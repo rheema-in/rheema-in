@@ -60,6 +60,33 @@ details.featured-post summary:hover .expand-icon{background:var(--gold);color:#f
 .nav-drop:hover .drop-menu,.nav-drop:focus-within .drop-menu{display:block}
 .nav-drop .drop-menu a{display:block;padding:11px 18px;color:var(--ink);text-decoration:none;font-size:14px;letter-spacing:.02em;text-transform:none;font-weight:500;white-space:nowrap}
 .nav-drop .drop-menu a:hover{background:#faf7f0;color:var(--gold-dark)}
+
+/* --- Blog motion effects --- */
+.page-hero{position:relative;overflow:hidden}
+.page-hero .blob{position:absolute;border-radius:50%;filter:blur(50px);opacity:.45;pointer-events:none}
+.page-hero .blob.b1{width:280px;height:280px;background:#f3e2a0;top:-60px;left:-40px;animation:drift1 11s ease-in-out infinite alternate}
+.page-hero .blob.b2{width:220px;height:220px;background:#e8cf6f;bottom:-50px;right:-30px;animation:drift2 13s ease-in-out infinite alternate}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(50px,30px) scale(1.15)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1.1)}to{transform:translate(-40px,-30px) scale(1)}}
+.page-hero .kicker,.page-hero h1,.page-hero .gold-rule,.page-hero p{position:relative;animation:heroIn .9s ease both}
+.page-hero h1{animation-delay:.12s}
+.page-hero .gold-rule{animation-delay:.24s}
+.page-hero p{animation-delay:.36s}
+@keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.gold-rule{animation:ruleGlow 2.8s ease-in-out infinite}
+@keyframes ruleGlow{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,.35)}50%{box-shadow:0 0 14px 3px rgba(201,162,39,.35)}}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}
+.reveal.d2{transition-delay:.24s}
+.post{transition:transform .35s ease,box-shadow .35s ease}
+.post:hover{transform:translateY(-8px);box-shadow:0 18px 38px rgba(0,0,0,.10)}
+details.featured-post{transition:transform .35s ease,box-shadow .35s ease}
+details.featured-post:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.09)}
+details.featured-post .expand-icon{animation:iconPulse 2.4s ease-in-out infinite}
+@keyframes iconPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,.35)}50%{box-shadow:0 0 0 7px rgba(201,162,39,0)}}
+.wa-float{animation:waPulse 2.6s ease-in-out infinite}
+@keyframes waPulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 0 0 12px rgba(37,211,102,0)}}
 </style>
 </head>
 <body>
@@ -79,6 +106,8 @@ details.featured-post summary:hover .expand-icon{background:var(--gold);color:#f
 </header>
 
 <div class="page-hero">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
   <div class="wrap">
     <div class="kicker">Updates &amp; Ideas</div>
     <h1>Blog</h1>
@@ -89,7 +118,7 @@ details.featured-post summary:hover .expand-icon{background:var(--gold);color:#f
 
 <section class="content">
   <div class="wrap">
-    <details class="featured-post" style="background:#fff;border:1px solid #f0e6cc;border-radius:16px;margin-bottom:48px;box-shadow:0 10px 34px rgba(0,0,0,.05);cursor:pointer">
+    <details class="featured-post reveal" style="background:#fff;border:1px solid #f0e6cc;border-radius:16px;margin-bottom:48px;box-shadow:0 10px 34px rgba(0,0,0,.05);cursor:pointer">
     <summary style="padding:36px 48px;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px">
       <span>
         <span class="date" style="font-size:12px;letter-spacing:.2em;color:var(--gold-dark);text-transform:uppercase;display:block;margin-bottom:10px">Oct 2026 &middot; Product Guide</span>
@@ -147,10 +176,59 @@ details.featured-post summary:hover .expand-icon{background:var(--gold);color:#f
       </div>
     </div>
     </details>
+    <details class="featured-post reveal" style="background:#fff;border:1px solid #f0e6cc;border-radius:16px;margin-bottom:48px;box-shadow:0 10px 34px rgba(0,0,0,.05);cursor:pointer">
+    <summary style="padding:36px 48px;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px">
+      <span>
+        <span class="date" style="font-size:12px;letter-spacing:.2em;color:var(--gold-dark);text-transform:uppercase;display:block;margin-bottom:10px">Oct 2026 &middot; Product Guide</span>
+        <span style="font-family:Georgia,serif;font-size:26px;font-weight:600;color:var(--ink)">RHEEMA 800 ML Insulated Tumbler: Your Perfect Companion for Everyday Hydration</span>
+      </span>
+      <span class="expand-icon" style="flex-shrink:0;width:40px;height:40px;border-radius:50%;border:2px solid var(--gold);color:var(--gold-dark);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;transition:transform .3s">+</span>
+    </summary>
+    <div style="padding:0 48px 48px">
+      <div class="article-body" style="font-size:16px;color:#444">
+      <p>Staying hydrated throughout the day is an important part of a busy lifestyle. Whether you are working at the office, travelling, studying, or relaxing at home, having your favourite beverage nearby makes life more convenient.</p>
+      <p>The <strong>RHEEMA 800 ML Insulated Tumbler</strong> is designed for people who want a practical and stylish drinkware companion for everyday use. With its generous capacity and modern design, it is a useful addition to your daily routine.</p>
+      <h3 style="font-size:22px;margin:28px 0 12px">What Is the RHEEMA 800 ML Insulated Tumbler?</h3>
+      <p>The RHEEMA 800 ML Insulated Tumbler is a reusable drinkware product designed to hold your favourite beverages. Its 800 ml capacity makes it suitable for carrying a generous serving of water or other drinks throughout your day.</p>
+      <p>Whether you are heading to work, travelling, attending meetings, or spending time outdoors, this tumbler offers a convenient way to enjoy your beverages.</p>
+      <h3 style="font-size:22px;margin:28px 0 12px">Key Benefits of the RHEEMA 800 ML Tumbler</h3>
+      <h4 style="font-size:18px;margin:20px 0 8px;color:var(--gold-dark)">1. Generous 800 ML Capacity</h4>
+      <p>Enjoy a generous beverage capacity without needing to refill your tumbler as frequently. It is suitable for daily hydration at home, at work, or while travelling.</p>
+      <h4 style="font-size:18px;margin:20px 0 8px;color:var(--gold-dark)">2. Designed for Everyday Convenience</h4>
+      <p>Keep your favourite drink within reach during your daily activities. The RHEEMA tumbler can be a practical companion for office hours, study sessions, road trips, and leisure time.</p>
+      <h4 style="font-size:18px;margin:20px 0 8px;color:var(--gold-dark)">3. A Stylish Addition to Your Routine</h4>
+      <p>With its modern appearance, the RHEEMA tumbler complements different lifestyles. It can be used at your desk, at home, or during suitable travel and outdoor activities.</p>
+      <h4 style="font-size:18px;margin:20px 0 8px;color:var(--gold-dark)">4. A Reusable Drinkware Choice</h4>
+      <p>Using a reusable tumbler can help reduce reliance on disposable beverage cups and bottles when used consistently.</p>
+      <h4 style="font-size:18px;margin:20px 0 8px;color:var(--gold-dark)">5. Suitable for Different Occasions</h4>
+      <p>Enjoy water and other suitable beverages during work, travel, study, or relaxation. Always follow the product&apos;s instructions regarding beverage compatibility and care.</p>
+      <h3 style="font-size:22px;margin:28px 0 12px">Why Choose RHEEMA?</h3>
+      <p>RHEEMA is a consumer brand from <strong>Ranpa Exim Private Limited</strong>, focused on practical home and lifestyle products for everyday living.</p>
+      <p>Our aim is to bring useful products to customers that combine convenience, thoughtful design, and everyday functionality. We believe that the right everyday products can make simple routines more enjoyable.</p>
+      <p>The RHEEMA 800 ML Insulated Tumbler reflects this approach by offering generous capacity in a modern drinkware design.</p>
+      <h3 style="font-size:22px;margin:28px 0 12px">Frequently Asked Questions</h3>
+      <h4 style="font-size:18px;margin:20px 0 8px;color:var(--gold-dark)">1. What is the capacity of the RHEEMA tumbler?</h4>
+      <p>The tumbler has an advertised capacity of 800 ml.</p>
+      <h4 style="font-size:18px;margin:20px 0 8px;color:var(--gold-dark)">2. Can I use it at the office?</h4>
+      <p>Yes. It can be a convenient drinkware option for office desks, meetings, and everyday work routines.</p>
+      <h4 style="font-size:18px;margin:20px 0 8px;color:var(--gold-dark)">3. Is it suitable for travelling?</h4>
+      <p>It can be used for suitable travel activities, subject to the product&apos;s dimensions, lid design, and carrying instructions.</p>
+      <h4 style="font-size:18px;margin:20px 0 8px;color:var(--gold-dark)">4. Can I use it for hot and cold beverages?</h4>
+      <p>Please check the manufacturer&apos;s specifications to confirm its suitability for hot and cold drinks and its temperature-retention performance.</p>
+      <h4 style="font-size:18px;margin:20px 0 8px;color:var(--gold-dark)">5. Where can I explore RHEEMA products?</h4>
+      <p>Visit the official RHEEMA website at <a href="https://www.rheema.in" style="color:var(--gold-dark)">rheema.in</a> to explore the brand and its products.</p>
+      <h3 style="font-size:22px;margin:28px 0 12px">Conclusion: Make Every Sip Count with RHEEMA</h3>
+      <p>From busy mornings to relaxing evenings, the right drinkware can make everyday hydration more convenient. With its 800 ml capacity and modern design, the <strong>RHEEMA 800 ML Insulated Tumbler</strong> is designed to accompany you through your daily routine.</p>
+      <p>Choose practical everyday living with RHEEMA.</p>
+      <p><strong>Explore RHEEMA products:</strong> <a href="https://www.rheema.in" style="color:var(--gold-dark)">rheema.in</a></p>
+      </div>
+    </div>
+    </details>
+
     <div class="posts">
-      <article class="post"><div class="post-body"><div class="date">Oct 2026 · Kitchen Tips</div><h3>5 Ways a Rotating Dispenser Keeps Your Kitchen Organized</h3><p>From dal to rice, here's how six compartments and one smooth spin can replace a shelf of mismatched jars — and save you minutes every single day.</p><p><a class="read" href="contact.html">Ask us anything →</a></p></div></article>
-      <article class="post"><div class="post-body"><div class="date">Oct 2026 · Product News</div><h3>Why BPA-Free Storage Matters for Dry Foods</h3><p>Your grains sit in storage for weeks. Here's why food-grade, BPA-free materials aren't a luxury — they're the baseline your family deserves.</p><p><a class="read" href="products.html">See the dispenser →</a></p></div></article>
-      <article class="post"><div class="post-body"><div class="date">Oct 2026 · Brand</div><h3>Our Promise: Organized Today. Peace of Mind Everyday.</h3><p>The story behind the RHEEMA line — and why we believe the most-used objects in your home deserve the most thought.</p><p><a class="read" href="about.html">Read our story →</a></p></div></article>
+      <article class="post reveal"><div class="post-body"><div class="date">Oct 2026 · Kitchen Tips</div><h3>5 Ways a Rotating Dispenser Keeps Your Kitchen Organized</h3><p>From dal to rice, here's how six compartments and one smooth spin can replace a shelf of mismatched jars — and save you minutes every single day.</p><p><a class="read" href="contact.html">Ask us anything →</a></p></div></article>
+      <article class="post reveal"><div class="post-body"><div class="date">Oct 2026 · Product News</div><h3>Why BPA-Free Storage Matters for Dry Foods</h3><p>Your grains sit in storage for weeks. Here's why food-grade, BPA-free materials aren't a luxury — they're the baseline your family deserves.</p><p><a class="read" href="products.html">See the dispenser →</a></p></div></article>
+      <article class="post reveal"><div class="post-body"><div class="date">Oct 2026 · Brand</div><h3>Our Promise: Organized Today. Peace of Mind Everyday.</h3><p>The story behind the RHEEMA line — and why we believe the most-used objects in your home deserve the most thought.</p><p><a class="read" href="about.html">Read our story →</a></p></div></article>
     </div>
   </div>
 </section>
@@ -172,6 +250,15 @@ details.featured-post summary:hover .expand-icon{background:var(--gold);color:#f
     .then(function(r){return r.json();})
     .then(function(d){var n=parseInt(d.count_unique||d.count,10)||0;el.textContent=String(n).padStart(3,'0');})
     .catch(function(){});
+})();
+</script>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 })();
 </script>
 </body>
