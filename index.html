@@ -2465,6 +2465,22 @@
 .visitors .v-dot{width:8px;height:8px;border-radius:50%;background:#c9a227;animation:vpop 2.6s ease-in-out infinite}
 @keyframes vpop{0%,100%{box-shadow:0 0 0 4px rgba(201,162,39,.15)}50%{box-shadow:0 0 0 8px rgba(201,162,39,.06)}}
 #vcount{font-family:Georgia,serif;color:#c9a227;font-weight:700;letter-spacing:.12em}
+
+/* --- RHEEMA product image slider --- */
+.slider-wrap{max-width:1080px;margin:0 auto;padding:36px 24px 8px}
+.slider{position:relative;overflow:hidden;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.10);background:#faf7f0}
+.slider-track{display:flex;transition:transform .7s ease}
+.slider-track a{flex:0 0 100%;display:block}
+.slider-track img{width:100%;height:auto;display:block;max-height:560px;object-fit:contain;background:#fff}
+.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.9);color:#a88420;font-size:22px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15);z-index:2}
+.slider-arrow:hover{background:#c9a227;color:#fff}
+.slider-arrow.prev{left:14px}
+.slider-arrow.next{right:14px}
+.slider-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
+.slider-dot{width:11px;height:11px;border:none;border-radius:50%;background:rgba(0,0,0,.25);cursor:pointer;padding:0}
+.slider-dot.active{background:#c9a227}
+.slider-caption{position:absolute;left:20px;bottom:38px;background:rgba(33,27,18,.82);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.04em;z-index:2}
+@media(max-width:720px){.slider-track img{max-height:320px}.slider-caption{font-size:12px;left:12px;bottom:34px}}
 </style>
 </head>
 <body>
@@ -2533,6 +2549,42 @@
         </div>
       </div>
     </section>
+
+    <div class="slider-wrap">
+      <div class="slider" id="homeSlider">
+        <div class="slider-track" id="sliderTrack">
+          <a href="dispenser.html"><img src="og-image.jpg" alt="RHEEMA 6 Grid Rotating Food Dispenser"></a>
+          <a href="tumbler.html"><img src="tumbler.jpg" alt="RHEEMA Premium Stainless Steel Tumbler"></a>
+        </div>
+        <div class="slider-caption" id="sliderCaption">6 Grid Rotating Food Dispenser &mdash; &rupee;1,500</div>
+        <button class="slider-arrow prev" aria-label="Previous image" onclick="slideMove(-1)">&#10094;</button>
+        <button class="slider-arrow next" aria-label="Next image" onclick="slideMove(1)">&#10095;</button>
+        <div class="slider-dots">
+          <button class="slider-dot active" aria-label="Slide 1" onclick="slideGo(0)"></button>
+          <button class="slider-dot" aria-label="Slide 2" onclick="slideGo(1)"></button>
+        </div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var track = document.getElementById('sliderTrack');
+      var caption = document.getElementById('sliderCaption');
+      var dots = document.querySelectorAll('.slider-dot');
+      var captions = ['6 Grid Rotating Food Dispenser &mdash; &rupee;1,500', 'Premium Stainless Steel Tumbler &mdash; &rupee;599'];
+      var idx = 0, total = 2, timer = null;
+      function show(n){
+        idx = (n + total) % total;
+        track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+        caption.innerHTML = captions[idx];
+        dots.forEach(function(d, i){ d.classList.toggle('active', i === idx); });
+      }
+      window.slideMove = function(d){ show(idx + d); restart(); };
+      window.slideGo = function(n){ show(n); restart(); };
+      function restart(){ clearInterval(timer); timer = setInterval(function(){ show(idx + 1); }, 4000); }
+      restart();
+    })();
+    </script>
+
 
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
