@@ -331,27 +331,6 @@
       line-height: 1.2;
     }
     .art-label span { color: var(--muted); font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; }
-
-    .marquee {
-      overflow: hidden;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      background: var(--accent);
-      color: var(--on-accent);
-    }
-    .marquee-track {
-      width: max-content;
-      padding: 15px 0;
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      animation: drift 28s linear infinite;
-      font-size: .82rem;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-    .marquee-track span::after { content: "◆"; margin-left: 28px; font-size: .55rem; vertical-align: 2px; }
     @keyframes drift { to { transform: translateX(-50%); } }
 
     .product {
@@ -381,28 +360,6 @@
       color: var(--muted);
       font-size: clamp(1.05rem, 1.4vw, 1.22rem);
     }
-    .product-gallery {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-bottom: clamp(54px, 7vw, 90px);
-    }
-    .product-gallery figure {
-      min-width: 0;
-      margin: 0;
-      overflow: hidden;
-      background: #fff;
-      border: 1px solid var(--line);
-    }
-    .product-gallery figure { aspect-ratio: 1.38; }
-    .product-gallery img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: contain;
-    }
-    .product-gallery figure:first-child img,
-    .product-gallery figure:last-child img { object-fit: cover; }
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -634,8 +591,6 @@
       .hero-copy { max-width: 800px; }
       .hero-art { justify-self: center; width: min(88vw, 560px); }
       .product-heading, .about, .contact { grid-template-columns: 1fr; }
-      .product-gallery { grid-template-columns: 1fr 1fr; }
-      .product-gallery figure { aspect-ratio: 1.2; }
       .section-label { margin: 0; }
       .footer-top { grid-template-columns: 1.2fr 1fr 1fr; }
     }
@@ -668,8 +623,6 @@
       h1 { font-size: clamp(3.35rem, 17vw, 5.5rem); }
       .hero-art { width: 100%; }
       .art-label { width: 72%; padding: 17px; }
-      .product-gallery { grid-template-columns: 1fr; }
-      .product-gallery figure { aspect-ratio: 1.25; }
       .feature-grid { grid-template-columns: 1fr; }
       .feature, .feature:not(:nth-child(3n + 1)) { padding: 22px 0; border-left: 0; }
       .product-details { align-items: flex-start; flex-direction: column; gap: 10px; }
@@ -692,8 +645,6 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .marquee-track { width: auto; flex-wrap: wrap; padding: 15px 22px; }
-      .marquee-track span:nth-child(n+4) { display: none; }
     }
 
     /* Premium RHEEMA art direction */
@@ -825,38 +776,6 @@
     }
     .art-field img { transition: transform .9s cubic-bezier(.2,.7,.2,1); }
     .hero-art:hover .art-field img { transform: scale(1.035); }
-    .art-inset {
-      position: absolute;
-      right: -3%;
-      top: 10%;
-      z-index: 3;
-      width: 34%;
-      aspect-ratio: .82;
-      padding: 7px;
-      background: #fff;
-      box-shadow: 0 22px 50px rgba(15, 15, 12, .22);
-      overflow: hidden;
-    }
-    .art-inset img { width: 100%; height: 100%; display: block; object-fit: cover; }
-    .art-orbit {
-      position: absolute;
-      left: -8%;
-      bottom: 16%;
-      z-index: 4;
-      width: 104px;
-      height: 104px;
-      display: grid;
-      place-content: center;
-      border: 1px solid rgba(184, 148, 79, .65);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, .94);
-      color: var(--accent-deep);
-      text-align: center;
-      box-shadow: 0 14px 36px rgba(39, 31, 19, .12);
-    }
-    .art-orbit::before { content: ""; position: absolute; inset: 7px; border: 1px solid rgba(184, 148, 79, .28); border-radius: inherit; }
-    .art-orbit span { font-family: "Cormorant Garamond", serif; font-size: 1.75rem; line-height: 1; }
-    .art-orbit small { margin-top: 3px; font-size: .58rem; letter-spacing: .15em; text-transform: uppercase; }
     .art-label {
       width: 59%;
       padding: 24px 27px;
@@ -866,14 +785,6 @@
     }
     .art-label strong { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; font-weight: 600; }
     .art-label span { color: var(--accent-deep); letter-spacing: .13em; }
-
-    .marquee {
-      border-color: rgba(184, 148, 79, .4);
-      background: #fff;
-      color: var(--accent-deep);
-    }
-    .marquee-track { padding: 18px 0; letter-spacing: .16em; }
-    .marquee-track span::after { color: var(--accent); content: "◆"; }
 
     .brand-story,
     .product,
@@ -937,47 +848,6 @@
       color: #171713;
     }
     .product-heading h2 { font-size: clamp(3.2rem, 6vw, 6.4rem); }
-    .product-gallery {
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 18px;
-      margin-bottom: clamp(70px, 9vw, 118px);
-    }
-    .product-gallery figure {
-      position: relative;
-      border: 0;
-      background: #f7f5f0;
-      box-shadow: 0 12px 40px rgba(45, 37, 23, .08);
-      transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s ease;
-    }
-    .product-gallery figure:nth-child(1),
-    .product-gallery figure:nth-child(4) { grid-column: span 7; }
-    .product-gallery figure:nth-child(2),
-    .product-gallery figure:nth-child(3) { grid-column: span 5; }
-    .product-gallery figure:nth-child(1),
-    .product-gallery figure:nth-child(2) { aspect-ratio: 1.24; }
-    .product-gallery figure:nth-child(3),
-    .product-gallery figure:nth-child(4) { aspect-ratio: 1.48; }
-    .product-gallery figure::after {
-      content: "View";
-      position: absolute;
-      right: 18px;
-      bottom: 18px;
-      padding: 8px 13px;
-      background: rgba(255,255,255,.92);
-      color: var(--accent-deep);
-      border: 1px solid rgba(184,148,79,.32);
-      font-size: .64rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity .3s ease, transform .3s ease;
-    }
-    .product-gallery figure:hover { transform: translateY(-7px); box-shadow: 0 24px 58px rgba(45, 37, 23, .14); }
-    .product-gallery figure:hover::after { opacity: 1; transform: translateY(0); }
-    .product-gallery img { transition: transform .65s cubic-bezier(.2,.7,.2,1); }
-    .product-gallery figure:hover img { transform: scale(1.025); }
 
     .feature-grid { border-color: rgba(184, 148, 79, .48); }
     .feature {
@@ -1276,7 +1146,6 @@
 
     @media (max-width: 1050px) {
       .hero { grid-template-columns: minmax(0, 1fr) minmax(390px, .82fr); gap: 54px; }
-      .art-orbit { left: -2%; }
     }
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: auto; background: #fff; }
@@ -1288,7 +1157,6 @@
       .founder-view { gap: 16px; }
       .founder-mark { display: none; }
       .contact { gap: 58px; }
-      .product-gallery figure:nth-child(n) { grid-column: span 6; aspect-ratio: 1.2; }
       .footer-top { grid-template-columns: 1.2fr 1fr 1fr; }
     }
     @media (max-width: 680px) {
@@ -1299,14 +1167,9 @@
       h1 { font-size: clamp(3.6rem, 18vw, 5.4rem); }
       .hero-art { width: calc(100% - 12px); }
       .hero-art::before { inset: -5% -3% 16% 16%; }
-      .art-inset { right: -2%; width: 36%; }
-      .art-orbit { width: 86px; height: 86px; bottom: 14%; }
       .art-label { width: 76%; padding: 18px 20px; }
       .brand-story::after { right: -14vw; }
       .story-columns { grid-template-columns: 1fr; }
-      .product-gallery { grid-template-columns: 1fr; }
-      .product-gallery figure:nth-child(n) { grid-column: 1; aspect-ratio: 1.16; }
-      .product-gallery figure::after { display: none; }
       .feature, .feature:not(:nth-child(3n + 1)) { padding: 26px 0; border-left: 0; }
       .benefit-item { grid-template-columns: 48px minmax(0, 1fr); gap: 14px; padding: 28px 0; }
       .faq summary { padding-right: 42px; }
@@ -1319,8 +1182,6 @@
     @media (max-width: 390px) {
       .wordmark-main { font-size: 1.35rem; }
       .wordmark-by { font-size: .52rem; }
-      .art-inset { display: none; }
-      .art-orbit { left: -3%; }
       .footer-top { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -1712,14 +1573,6 @@
       border-radius: 2px 24px 2px 24px;
       box-shadow: 0 42px 110px rgba(43, 32, 14, .19), 0 8px 26px rgba(43, 32, 14, .08);
     }
-    .art-inset {
-      border-radius: 18px 2px 18px 2px;
-      box-shadow: var(--luxury-shadow-hover);
-    }
-    .art-orbit {
-      border-color: rgba(184, 148, 79, .78);
-      box-shadow: 0 18px 42px rgba(74, 54, 20, .15);
-    }
     .art-label {
       border-radius: 18px 2px 2px 2px;
       background: linear-gradient(135deg, #fff 0%, #fbf7ed 100%);
@@ -1734,21 +1587,6 @@
       font-weight: 600;
       letter-spacing: .21em;
     }
-
-    .marquee { position: relative; }
-    .marquee::before,
-    .marquee::after {
-      content: "";
-      position: absolute;
-      z-index: 2;
-      top: 0;
-      bottom: 0;
-      width: 12vw;
-      pointer-events: none;
-    }
-    .marquee::before { left: 0; background: linear-gradient(90deg, #fff, transparent); }
-    .marquee::after { right: 0; background: linear-gradient(-90deg, #fff, transparent); }
-    .marquee-track { padding: 20px 0; font-size: .72rem; }
 
     .product-stats { padding-top: clamp(74px, 9vw, 118px); padding-bottom: clamp(74px, 9vw, 118px); }
     .stat strong {
@@ -1786,44 +1624,6 @@
       border-top-color: rgba(184, 148, 79, .52);
     }
     .story-columns p { line-height: 1.85; }
-
-    .product-gallery { gap: clamp(18px, 2.2vw, 30px); }
-    .product-gallery figure {
-      overflow: hidden;
-      border: 1px solid rgba(184, 148, 79, .18);
-      border-radius: 22px 3px 22px 3px;
-      box-shadow: var(--luxury-shadow);
-    }
-    .product-gallery figure:nth-child(even) { border-radius: 3px 22px 3px 22px; }
-    .product-gallery figure::before {
-      position: absolute;
-      z-index: 2;
-      left: 20px;
-      top: 20px;
-      padding: 9px 13px 8px;
-      border: 1px solid rgba(184, 148, 79, .38);
-      border-radius: 999px;
-      background: rgba(255, 253, 248, .93);
-      color: var(--gold-deep);
-      font-size: .57rem;
-      font-weight: 600;
-      letter-spacing: .19em;
-      box-shadow: 0 8px 24px rgba(69, 49, 18, .08);
-      backdrop-filter: blur(8px);
-    }
-    .product-gallery figure:nth-child(1)::before { content: "IN THE HOME"; }
-    .product-gallery figure:nth-child(2)::before { content: "SIGNATURE DETAILS"; }
-    .product-gallery figure:nth-child(3)::before { content: "CONSIDERED SCALE"; }
-    .product-gallery figure:nth-child(4)::before { content: "ORDER, REFINED"; }
-    .product-gallery figure::after {
-      content: "Explore detail";
-      border-radius: 999px;
-      box-shadow: 0 8px 24px rgba(69, 49, 18, .08);
-    }
-    .product-gallery figure:hover {
-      transform: translateY(-9px);
-      box-shadow: var(--luxury-shadow-hover);
-    }
 
     .feature-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2037,9 +1837,6 @@
       .contact { padding-top: 108px; padding-bottom: 108px; }
       .section-label { letter-spacing: .18em; }
       .art-field { border-radius: 2px 18px 2px 18px; }
-      .product-gallery figure,
-      .product-gallery figure:nth-child(even) { border-radius: 16px 3px 16px 3px; }
-      .product-gallery figure::before { left: 14px; top: 14px; padding: 7px 10px 6px; font-size: .52rem; }
       .feature-grid { grid-template-columns: 1fr; gap: 14px; }
       .feature,
       .feature:not(:nth-child(3n + 1)) { padding: 28px 26px; }
@@ -2150,34 +1947,6 @@
       letter-spacing: -.025em;
     }
     .model-intro > p:not(.section-label):not(.model-status) { color: var(--muted); line-height: 1.75; }
-    .model-actions { margin-top: 30px; display: flex; align-items: center; flex-wrap: wrap; gap: 13px 18px; }
-    .model-action,
-    .model-reset,
-    .gallery-arrow {
-      appearance: none;
-      border: 1px solid rgba(127, 91, 36, .48);
-      background: #fff;
-      color: #171713;
-      font: inherit;
-      cursor: pointer;
-    }
-    .model-action {
-      min-height: 52px;
-      padding: 12px 18px 12px 20px;
-      display: inline-flex;
-      align-items: center;
-      gap: 13px;
-      background: #171713;
-      border-color: #171713;
-      color: #fff;
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-    }
-    .model-action svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; }
-    .model-action:hover { background: var(--gold-deep); border-color: var(--gold-deep); }
-    .model-reset { padding: 12px 2px; border-width: 0 0 1px; color: var(--gold-deep); font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
     .model-status { min-height: 1.5em; margin: 15px 0 0; color: var(--gold-deep); font-size: .69rem; letter-spacing: .08em; }
     .model-viewport {
       position: relative;
@@ -2219,92 +1988,9 @@
       pointer-events: none;
       backdrop-filter: blur(10px);
     }
-    .model-hint {
-      position: absolute;
-      left: 22px;
-      bottom: 19px;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      color: #6f654f;
-      font-size: .62rem;
-      font-weight: 600;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      pointer-events: none;
-    }
-    .model-hint span { width: 28px; height: 1px; background: var(--gold-bright); }
-    .model-fallback { position: absolute; inset: 0; background: #fbfaf6; }
-    .model-fallback img { width: 100%; height: 100%; object-fit: contain; }
-
-    .gallery-shell { margin-bottom: clamp(78px, 9vw, 130px); overflow: hidden; }
-    .product-gallery {
-      position: relative;
-      display: block;
-      width: 100%;
-      margin: 0;
-      perspective: 1500px;
-      outline: none;
-      touch-action: pan-y;
-      cursor: grab;
-    }
-    .product-gallery:active { cursor: grabbing; }
-    .product-gallery:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 7px; }
-    .gallery-stage {
-      position: relative;
-      width: 100%;
-      height: clamp(390px, 51vw, 690px);
-      transform-style: preserve-3d;
-    }
-    .product-gallery figure,
-    .product-gallery figure:nth-child(n) {
-      position: absolute;
-      left: 12%;
-      top: 0;
-      width: 76%;
-      height: 100%;
-      margin: 0;
-      aspect-ratio: auto;
-      grid-column: auto;
-      border: 1px solid rgba(184,148,79,.22);
-      border-radius: 3px 26px 3px 26px;
-      background: #fbfaf6;
-      box-shadow: var(--luxury-shadow-hover);
-      overflow: hidden;
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
-      will-change: transform, opacity;
-      transition: transform .78s cubic-bezier(.18,.8,.2,1), opacity .5s ease, filter .5s ease;
-    }
-    .product-gallery figure:nth-child(even) { border-radius: 26px 3px 26px 3px; }
-    .product-gallery figure img,
-    .product-gallery figure:first-child img,
-    .product-gallery figure:last-child img { width: 100%; height: 100%; object-fit: contain; background: #fbfaf6; }
-    .product-gallery figure:first-child img,
-    .product-gallery figure:last-child img { object-fit: cover; }
-    .product-gallery figure::after { display: none; }
-    .product-gallery figure:hover { box-shadow: var(--luxury-shadow-hover); }
-    .gallery-controls {
-      margin-top: 31px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-    }
-    .gallery-arrow {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      transition: color .25s ease, background .25s ease, transform .25s ease;
-    }
-    .gallery-arrow:hover { background: #171713; color: #fff; transform: translateY(-2px); }
-    .gallery-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.4; }
     .gallery-position { min-width: 95px; display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: .7rem; letter-spacing: .14em; }
     .gallery-position .gallery-current { color: var(--gold-deep); font-family: "Cormorant Garamond", serif; font-size: 1.45rem; }
     .gallery-position i { width: 30px; height: 1px; background: rgba(184,148,79,.48); }
-    .gallery-instruction { margin: 13px 0 0; color: var(--muted); font-size: .66rem; letter-spacing: .08em; text-align: center; }
 
     .feature[data-tilt] {
       transform-style: preserve-3d;
@@ -2336,12 +2022,6 @@
       .model-showcase { margin-bottom: 90px; }
       .model-intro h3 { font-size: clamp(2.45rem, 13vw, 3.9rem); }
       .model-viewport { min-height: 430px; border-radius: 3px 22px 3px 22px; }
-      .model-hint { left: 15px; bottom: 13px; }
-      .gallery-stage { height: min(112vw, 510px); }
-      .product-gallery figure,
-      .product-gallery figure:nth-child(n) { left: 6%; width: 88%; border-radius: 3px 18px 3px 18px; }
-      .product-gallery figure:nth-child(even) { border-radius: 18px 3px 18px 3px; }
-      .gallery-controls { margin-top: 24px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .benefit-item:hover,
@@ -2454,22 +2134,6 @@
 .visitors .v-dot{width:8px;height:8px;border-radius:50%;background:#c9a227;animation:vpop 2.6s ease-in-out infinite}
 @keyframes vpop{0%,100%{box-shadow:0 0 0 4px rgba(201,162,39,.15)}50%{box-shadow:0 0 0 8px rgba(201,162,39,.06)}}
 #vcount{font-family:Georgia,serif;color:#c9a227;font-weight:700;letter-spacing:.12em}
-
-/* --- RHEEMA product image slider --- */
-.slider-wrap{max-width:1080px;margin:0 auto;padding:36px 24px 8px}
-.slider{position:relative;overflow:hidden;border-radius:18px;box-shadow:0 14px 40px rgba(0,0,0,.10);background:#faf7f0}
-.slider-track{display:flex;transition:transform .7s ease}
-.slider-track a{flex:0 0 100%;display:block}
-.slider-track img{width:100%;height:auto;display:block;max-height:560px;object-fit:contain;background:#fff}
-.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:none;border-radius:50%;background:rgba(255,255,255,.9);color:#a88420;font-size:22px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15);z-index:2}
-.slider-arrow:hover{background:#c9a227;color:#fff}
-.slider-arrow.prev{left:14px}
-.slider-arrow.next{right:14px}
-.slider-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
-.slider-dot{width:11px;height:11px;border:none;border-radius:50%;background:rgba(0,0,0,.25);cursor:pointer;padding:0}
-.slider-dot.active{background:#c9a227}
-.slider-caption{position:absolute;left:20px;bottom:38px;background:rgba(33,27,18,.82);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.04em;z-index:2}
-@media(max-width:720px){.slider-track img{max-height:320px}.slider-caption{font-size:12px;left:12px;bottom:34px}}
 
 /* --- FAQ + footer motion --- */
 .faq details { animation: faqIn .7s ease both; }
@@ -2764,339 +2428,7 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
     </div>
   </footer>
 
-  <script>
-    (function () {
-      var menuButton = document.querySelector('.menu-button');
-      var navLinks = document.getElementById('nav-links');
-      var navItems = navLinks.querySelectorAll('a');
-      var sections = document.querySelectorAll('main section[id]');
-      var lazyImages = document.querySelectorAll('img[loading="lazy"]');
-
-      if ('IntersectionObserver' in window) {
-        var imageObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.loading = 'eager';
-              imageObserver.unobserve(entry.target);
-            }
-          });
-        }, { rootMargin: '700px 0px' });
-        lazyImages.forEach(function (image) { imageObserver.observe(image); });
-      }
-
-      function closeMenu() {
-        navLinks.setAttribute('data-open', 'false');
-        menuButton.setAttribute('aria-expanded', 'false');
-        menuButton.setAttribute('aria-label', 'Open menu');
-      }
-
-      menuButton.addEventListener('click', function () {
-        var isOpen = navLinks.getAttribute('data-open') === 'true';
-        navLinks.setAttribute('data-open', String(!isOpen));
-        menuButton.setAttribute('aria-expanded', String(!isOpen));
-        menuButton.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
-      });
-
-      navItems.forEach(function (item) {
-        item.addEventListener('click', closeMenu);
-      });
-
-      window.addEventListener('resize', function () {
-        if (window.innerWidth > 680) closeMenu();
-      });
-
-      if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              navItems.forEach(function (link) {
-                var href = link.getAttribute('href') || '';
-                if (href.charAt(0) !== '#') return;
-                var active = href === '#' + entry.target.id;
-                if (active) link.setAttribute('aria-current', 'page');
-                else link.removeAttribute('aria-current');
-              });
-            }
-          });
-        }, { rootMargin: '-25% 0px -65% 0px' });
-        sections.forEach(function (section) { observer.observe(section); });
-      }
-
-      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      /* Spring-led tilt and hero depth. Pointer input stays local and touch never blocks vertical scrolling. */
-      if (!reduceMotion) {
-        var tiltStates = [];
-        var tiltFrame = 0;
-        var tiltTargets = document.querySelectorAll('[data-tilt], .feature');
-        tiltTargets.forEach(function (element) {
-          if (element.classList.contains('feature')) {
-            element.setAttribute('data-tilt', '');
-            var cardGlare = document.createElement('span');
-            cardGlare.className = 'card-glare';
-            cardGlare.setAttribute('aria-hidden', 'true');
-            element.appendChild(cardGlare);
-          }
-          var state = { el: element, rx: 0, ry: 0, tx: 0, ty: 0, active: false };
-          tiltStates.push(state);
-
-          function pointTilt(clientX, clientY) {
-            var rect = element.getBoundingClientRect();
-            var px = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-            var py = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
-            var max = Number(element.getAttribute('data-tilt-max')) || 4.5;
-            state.tx = (px - .5) * max * 2;
-            state.ty = (.5 - py) * max * 2;
-            element.style.setProperty('--glare-x', (px * 100).toFixed(1) + '%');
-            element.style.setProperty('--glare-y', (py * 100).toFixed(1) + '%');
-            element.style.setProperty('--glare-opacity', element.classList.contains('hero-tilt-plane') ? '.58' : '.42');
-            startTiltLoop();
-          }
-          element.addEventListener('pointerenter', function (event) {
-            if (event.pointerType !== 'touch') state.active = true;
-          });
-          element.addEventListener('pointerdown', function (event) {
-            state.active = true;
-            pointTilt(event.clientX, event.clientY);
-          }, { passive: true });
-          element.addEventListener('pointermove', function (event) {
-            if (event.pointerType === 'touch' && !state.active) return;
-            pointTilt(event.clientX, event.clientY);
-          }, { passive: true });
-          function settleTilt() {
-            state.active = false;
-            state.tx = 0;
-            state.ty = 0;
-            element.style.setProperty('--glare-opacity', '0');
-            startTiltLoop();
-          }
-          element.addEventListener('pointerleave', settleTilt);
-          element.addEventListener('pointerup', settleTilt, { passive: true });
-          element.addEventListener('pointercancel', settleTilt, { passive: true });
-        });
-
-        function startTiltLoop() {
-          if (!tiltFrame) tiltFrame = requestAnimationFrame(stepTilts);
-        }
-        function stepTilts() {
-          var moving = false;
-          tiltStates.forEach(function (state) {
-            state.rx += (state.ty - state.rx) * .14;
-            state.ry += (state.tx - state.ry) * .14;
-            if (Math.abs(state.tx - state.ry) > .02 || Math.abs(state.ty - state.rx) > .02) moving = true;
-            state.el.style.setProperty('--tilt-rx', state.rx.toFixed(2) + 'deg');
-            state.el.style.setProperty('--tilt-ry', state.ry.toFixed(2) + 'deg');
-            state.el.style.setProperty('--tilt-y', state.active ? '-4px' : '0px');
-          });
-          tiltFrame = moving ? requestAnimationFrame(stepTilts) : 0;
-        }
-
-        var heroSection = document.querySelector('.hero');
-        var heroTargetX = 0;
-        var heroTargetY = 0;
-        var heroCurrentX = 0;
-        var heroCurrentY = 0;
-        var heroDepthFrame = 0;
-        var heroPointerActive = false;
-        function moveHeroDepth() {
-          heroCurrentX += (heroTargetX - heroCurrentX) * .095;
-          heroCurrentY += (heroTargetY - heroCurrentY) * .095;
-          heroSection.style.setProperty('--hero-x', heroCurrentX.toFixed(3));
-          heroSection.style.setProperty('--hero-y', heroCurrentY.toFixed(3));
-          if (Math.abs(heroTargetX - heroCurrentX) > .004 || Math.abs(heroTargetY - heroCurrentY) > .004) heroDepthFrame = requestAnimationFrame(moveHeroDepth);
-          else heroDepthFrame = 0;
-        }
-        function queueHeroDepth() { if (!heroDepthFrame) heroDepthFrame = requestAnimationFrame(moveHeroDepth); }
-        heroSection.addEventListener('pointerenter', function () { heroPointerActive = true; });
-        heroSection.addEventListener('pointermove', function (event) {
-          var rect = heroSection.getBoundingClientRect();
-          heroTargetX = Math.max(-1, Math.min(1, ((event.clientX - rect.left) / rect.width - .5) * 2));
-          heroTargetY = Math.max(-1, Math.min(1, ((event.clientY - rect.top) / rect.height - .5) * 2));
-          queueHeroDepth();
-        }, { passive: true });
-        heroSection.addEventListener('pointerleave', function () {
-          heroPointerActive = false;
-          heroTargetX = 0;
-          heroTargetY = 0;
-          queueHeroDepth();
-        });
-        if ('DeviceOrientationEvent' in window) {
-          window.addEventListener('deviceorientation', function (event) {
-            if (heroPointerActive || event.gamma === null || event.beta === null) return;
-            heroTargetX = Math.max(-1, Math.min(1, event.gamma / 24));
-            heroTargetY = Math.max(-1, Math.min(1, (event.beta - 45) / 32));
-            queueHeroDepth();
-          }, { passive: true });
-        }
-      }
-
-      /* Perspective product gallery with button, keyboard, click and swipe control. */
-      (function setupGallery() {
-        var gallery = document.querySelector('.product-gallery');
-        if (!gallery) return;
-        var items = Array.prototype.slice.call(gallery.querySelectorAll('figure'));
-        var currentLabel = document.querySelector('.gallery-current');
-        var previousButton = document.querySelector('.gallery-prev');
-        var nextButton = document.querySelector('.gallery-next');
-        var activeIndex = 0;
-        var pointerStart = 0;
-        var pointerDelta = 0;
-
-        function relativePosition(itemIndex) {
-          var difference = itemIndex - activeIndex;
-          var half = items.length / 2;
-          if (difference > half) difference -= items.length;
-          if (difference < -half) difference += items.length;
-          return difference;
-        }
-        function renderGallery() {
-          items.forEach(function (item, itemIndex) {
-            var relative = relativePosition(itemIndex);
-            var absolute = Math.abs(relative);
-            var x = relative === 0 ? 0 : (relative > 0 ? 1 : -1) * (absolute === 1 ? 54 : 78);
-            var z = relative === 0 ? 80 : (absolute === 1 ? -160 : -300);
-            var turn = relative === 0 ? 0 : (relative > 0 ? -1 : 1) * (absolute === 1 ? 34 : 48);
-            var scale = relative === 0 ? 1 : (absolute === 1 ? .82 : .68);
-            var opacity = relative === 0 ? 1 : (absolute === 1 ? .66 : .2);
-            item.style.transform = 'translate3d(' + x + '%,0,' + z + 'px) rotateY(' + turn + 'deg) scale(' + scale + ')';
-            item.style.opacity = String(opacity);
-            item.style.filter = relative === 0 ? 'none' : 'saturate(.72) brightness(.92)';
-            item.style.zIndex = String(10 - absolute);
-            item.style.pointerEvents = relative === 0 || absolute === 1 ? 'auto' : 'none';
-            item.setAttribute('aria-hidden', relative === 0 ? 'false' : 'true');
-          });
-          currentLabel.textContent = String(activeIndex + 1).padStart(2, '0');
-        }
-        function goTo(index) {
-          activeIndex = (index + items.length) % items.length;
-          renderGallery();
-        }
-        previousButton.addEventListener('click', function () { goTo(activeIndex - 1); });
-        nextButton.addEventListener('click', function () { goTo(activeIndex + 1); });
-        items.forEach(function (item, itemIndex) {
-          item.addEventListener('click', function () { if (itemIndex !== activeIndex) goTo(itemIndex); });
-        });
-        gallery.addEventListener('keydown', function (event) {
-          if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(activeIndex - 1); }
-          if (event.key === 'ArrowRight') { event.preventDefault(); goTo(activeIndex + 1); }
-          if (event.key === 'Home') { event.preventDefault(); goTo(0); }
-          if (event.key === 'End') { event.preventDefault(); goTo(items.length - 1); }
-        });
-        gallery.addEventListener('pointerdown', function (event) {
-          pointerStart = event.clientX;
-          pointerDelta = 0;
-          gallery.setPointerCapture(event.pointerId);
-        });
-        gallery.addEventListener('pointermove', function (event) {
-          if (!gallery.hasPointerCapture(event.pointerId)) return;
-          pointerDelta = event.clientX - pointerStart;
-        }, { passive: true });
-        gallery.addEventListener('pointerup', function (event) {
-          if (gallery.hasPointerCapture(event.pointerId)) gallery.releasePointerCapture(event.pointerId);
-          if (Math.abs(pointerDelta) > 36) goTo(activeIndex + (pointerDelta < 0 ? 1 : -1));
-          pointerDelta = 0;
-        }, { passive: true });
-        gallery.addEventListener('pointercancel', function () { pointerDelta = 0; }, { passive: true });
-        renderGallery();
-      }());
-
-
-      if ('IntersectionObserver' in window && !reduceMotion) {
-        var revealItems = document.querySelectorAll('.product-stats, .brand-story .section-label, .story-copy, .product-heading, .product-gallery, .feature-grid, .product-details, .benefits-heading, .benefit-list, .section-bridge, .about .section-label, .about-intro, .founder-mark, .founder-copy, .statement-inner, .faq-heading, .faq-list, .contact-intro, .contact-form, .footer-brand, .footer-group, .footer-bottom');
-        document.documentElement.classList.add('motion-ready');
-        revealItems.forEach(function (item, index) {
-          item.classList.add('reveal');
-          item.style.setProperty('--reveal-delay', String((index % 3) * 70) + 'ms');
-          if (item.matches('.section-label, .founder-mark, .footer-brand')) item.classList.add('from-left');
-          if (item.matches('.contact-form')) item.classList.add('from-right');
-        });
-
-        document.querySelectorAll('.product-gallery figure, .feature, .principle').forEach(function (item, index) {
-          item.style.setProperty('--item-delay', String((index % 9) * 55) + 'ms');
-        });
-
-        var revealObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        }, { rootMargin: '0px 0px -9% 0px', threshold: .08 });
-        revealItems.forEach(function (item) { revealObserver.observe(item); });
-      }
-
-      var counters = document.querySelectorAll('.count');
-      function animateCounter(counter) {
-        var target = Number(counter.getAttribute('data-target'));
-        var suffix = counter.getAttribute('data-suffix') || '';
-        var startTime = 0;
-        counter.textContent = '0' + suffix;
-        function tick(time) {
-          if (!startTime) startTime = time;
-          var progress = Math.min((time - startTime) / 1450, 1);
-          var eased = 1 - Math.pow(1 - progress, 3);
-          counter.textContent = String(Math.round(target * eased)) + suffix;
-          if (progress < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-      }
-      if ('IntersectionObserver' in window && !reduceMotion) {
-        var counterObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              animateCounter(entry.target);
-              counterObserver.unobserve(entry.target);
-            }
-          });
-        }, { threshold: .55 });
-        counters.forEach(function (counter) { counterObserver.observe(counter); });
-      }
-
-      if (!reduceMotion) {
-        var header = document.querySelector('.site-header');
-        var heroArt = document.querySelector('.hero-art');
-        var story = document.querySelector('.brand-story');
-        var statement = document.querySelector('.statement');
-        var framePending = false;
-
-        function updateMotion() {
-          var scrollY = window.scrollY || document.documentElement.scrollTop;
-          var maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-          document.documentElement.style.setProperty('--scroll-progress', String(Math.min(scrollY / maxScroll, 1)));
-          header.classList.toggle('is-scrolled', scrollY > 18);
-
-          if (heroArt && window.innerWidth > 680) {
-            var heroRect = heroArt.getBoundingClientRect();
-            var heroOffset = Math.max(-34, Math.min(34, (heroRect.top - window.innerHeight * .42) * -.045));
-            heroArt.style.setProperty('--hero-parallax', heroOffset.toFixed(1) + 'px');
-            heroArt.style.setProperty('--inset-parallax', (heroOffset * -.72).toFixed(1) + 'px');
-            heroArt.style.setProperty('--orbit-parallax', (heroOffset * .52).toFixed(1) + 'px');
-          }
-
-          [story, statement].forEach(function (section) {
-            if (!section) return;
-            var rect = section.getBoundingClientRect();
-            var shift = Math.max(-42, Math.min(42, (rect.top + rect.height / 2 - window.innerHeight / 2) * -.035));
-            section.style.setProperty('--section-parallax', shift.toFixed(1) + 'px');
-          });
-          framePending = false;
-        }
-
-        function requestMotionUpdate() {
-          if (!framePending) {
-            framePending = true;
-            requestAnimationFrame(updateMotion);
-          }
-        }
-        window.addEventListener('scroll', requestMotionUpdate, { passive: true });
-        window.addEventListener('resize', requestMotionUpdate);
-        updateMotion();
-      }
-
-      document.getElementById('year').textContent = String(new Date().getFullYear());
-    }());
-  </script>
+  
 <script data-goatcounter="https://rheema.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
 (function(){
