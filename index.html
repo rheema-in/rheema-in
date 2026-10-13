@@ -2544,6 +2544,11 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
 .footer-bottom .domain { color: #e6d9b8 !important; }
 @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr !important; } }
 @media (max-width: 520px) { .footer-top { grid-template-columns: 1fr !important; } }
+
+/* Big home-page footer visitor counter */
+.footer-visitors-big { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; font-size: 1.55rem; font-weight: 700; letter-spacing: .06em; color: #e8cf6f; }
+.footer-visitors-big .fv-dot { width: 12px; height: 12px; border-radius: 50%; background: #c9a227; animation: vpop 2.6s ease-in-out infinite; }
+.footer-visitors-big #vcount { color: #fff; font-size: 1.8rem; }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8HCXVLP6RN"></script>
@@ -2811,6 +2816,7 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
         <div class="footer-brand">
           <strong><span class="footer-brand-main">RHEEMA</span><span class="footer-brand-by">by Ranpa Exim</span></strong>
           <p>Thoughtful products for the rhythm of everyday life.</p>
+          <div class="footer-visitors-big"><span class="fv-dot"></span>Visitors: <span id="vcount">000</span></div>
         </div>
         <div class="footer-group">
           <h3>Products</h3>
@@ -2840,7 +2846,7 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
       </div>
       <div class="footer-bottom">
         <span>© <span id="year">2026</span> RHEEMA by Ranpa Exim. All rights reserved.</span>
-        <span class="domain">www.rheema.in</span><span class="visitors"><span class="v-dot"></span>Visitors: <span id="vcount">000</span></span>
+        <span class="domain">www.rheema.in</span>
       </div>
     </div>
   </footer>
