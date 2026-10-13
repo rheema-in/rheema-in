@@ -2526,6 +2526,24 @@ footer::before { animation: goldShimmer 3.2s ease-in-out infinite; }
 @keyframes waPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,.4); } 50% { box-shadow: 0 0 0 10px rgba(37,211,102,0); } }
 .footer-brand-main { animation: brandGlow 3.5s ease-in-out infinite; }
 @keyframes brandGlow { 0%,100% { text-shadow: 0 0 0 rgba(201,162,39,0); } 50% { text-shadow: 0 0 22px rgba(201,162,39,.55); } }
+
+/* FINAL footer override — forces 4 columns in one row + dark background */
+footer { background: linear-gradient(180deg, #262016, #171208) !important; }
+footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a227, transparent); }
+.footer-inner { padding-top: 48px !important; padding-bottom: 0 !important; }
+.footer-top { grid-template-columns: 1.3fr 1fr 1fr 1.15fr !important; gap: 32px !important; padding-bottom: 36px !important; }
+.footer-brand-main { color: #c9a227 !important; background: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important; -webkit-text-fill-color: #c9a227; }
+.footer-brand-by { color: #b9ad8f !important; }
+.footer-brand p { color: #cfc6ae !important; }
+.footer-group h3 { color: #e8cf6f !important; }
+.footer-group h3::after { background: #c9a227; }
+.footer-group a { color: #cfc6ae !important; }
+.footer-group a:hover { color: #fff !important; }
+.footer-group li { color: #cfc6ae !important; }
+.footer-bottom { border-top-color: #3a3226 !important; color: #8f8672 !important; }
+.footer-bottom .domain { color: #e6d9b8 !important; }
+@media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr !important; } }
+@media (max-width: 520px) { .footer-top { grid-template-columns: 1fr !important; } }
 </style>
 </head>
 <body>
