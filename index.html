@@ -4,6 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="light" />
+  <link rel="preload" as="image" href="tumbler.jpg" fetchpriority="high" />
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="preconnect" href="https://rheema.goatcounter.com" />
+
   <meta name="description" content="RHEEMA Premium Stainless Steel Tumbler — 900 ml, vacuum insulated, BPA-free, reusable straw included, easy carry handle. ₹599 (was ₹999). Order on WhatsApp: 73829 26533." />
   <meta name="keywords" content="RHEEMA, RHEEMA tumbler, stainless steel tumbler, vacuum insulated tumbler, 900 ml tumbler, BPA-free tumbler, home essentials" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -2581,7 +2585,7 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
 
       <div class="hero-art" aria-label="RHEEMA tumbler product showcase">
         <div class="hero-tilt-plane" data-tilt data-tilt-max="7">
-          <div class="art-field"><img src="tumbler.jpg" alt="RHEEMA Premium Stainless Steel Tumbler"></div>
+          <div class="art-field"><img src="tumbler.jpg" alt="RHEEMA Premium Stainless Steel Tumbler" width="1200" height="1200" loading="eager" fetchpriority="high"></div>
           <div class="art-label"><strong>Hot or cold. For hours.</strong><span>RHEEMA / Featured 01</span></div>
           <span class="tilt-glare" aria-hidden="true"></span>
         </div>
@@ -3097,9 +3101,10 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
 <script>
 (function(){
   var el=document.getElementById('vcount'); if(!el) return;
+  try{var cached=sessionStorage.getItem('rheema_vcount');if(cached){el.textContent=cached;return;}}catch(e){}
   var paths=['%2F','about.html','products.html','dispenser.html','tumbler.html','blog.html','contact.html','certificates.html','downloads.html','terms.html','privacy.html'];
   Promise.all(paths.map(function(p){return fetch('https://rheema.goatcounter.com/counter/'+p+'.json').then(function(r){return r.json();}).catch(function(){return {count:0};});}))
-    .then(function(list){var n=0;list.forEach(function(d){n+=parseInt(d.count||0,10);});el.textContent=String(n).padStart(3,'0');})
+    .then(function(list){var n=0;list.forEach(function(d){n+=parseInt(d.count||0,10);});var s=String(n).padStart(3,'0');el.textContent=s;try{sessionStorage.setItem('rheema_vcount',s);}catch(e){}})
     .catch(function(){});
 })();
 </script>
