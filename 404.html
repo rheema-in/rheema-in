@@ -32,6 +32,11 @@ nav.main-nav a:hover{color:var(--gold-dark)}
 footer{background:var(--dark);color:#b9ad8f;padding:32px 0 24px;font-size:14px;text-align:center}
 footer a{color:#e6d9b8;text-decoration:none}
 @media(max-width:720px){nav.main-nav{gap:14px}.code{font-size:84px}}
+
+.visitors{width:100%;text-align:center;margin-top:16px;font-size:13px;color:#b9ad8f;letter-spacing:.1em}
+.visitors .v-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:8px;animation:vpop 2.6s ease-in-out infinite}
+@keyframes vpop{0%,100%{box-shadow:0 0 0 4px rgba(201,162,39,.15)}50%{box-shadow:0 0 0 8px rgba(201,162,39,.06)}}
+#vcount{font-family:Georgia,serif;color:var(--gold);font-weight:700;letter-spacing:.12em}
 </style>
 </head>
 <body>
@@ -60,7 +65,18 @@ footer a{color:#e6d9b8;text-decoration:none}
 </div>
 
 <footer>
-  <div class="wrap">© 2026 RHEEMA by Ranpa Exim. All rights reserved. · <a href="index.html">Home</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></div>
+  <div class="wrap"><div class="visitors"><span class="v-dot"></span>Visitors: <span id="vcount">000</span></div>
+    © 2026 RHEEMA by Ranpa Exim. All rights reserved. · <a href="index.html">Home</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></div>
 </footer>
+<script data-goatcounter="https://rheema.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+(function(){
+  var el=document.getElementById('vcount'); if(!el) return;
+  fetch('https://rheema.goatcounter.com/counter/TOTAL.json')
+    .then(function(r){return r.json();})
+    .then(function(d){var n=parseInt(d.count_unique||d.count,10)||0;el.textContent=String(n).padStart(3,'0');})
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>

@@ -2460,7 +2460,12 @@
       .product-menu:focus-within > a .nav-caret { transform: rotate(45deg); }
     }
 
-  </style>
+  
+.visitors{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#b9ad8f;letter-spacing:.1em}
+.visitors .v-dot{width:8px;height:8px;border-radius:50%;background:#c9a227;animation:vpop 2.6s ease-in-out infinite}
+@keyframes vpop{0%,100%{box-shadow:0 0 0 4px rgba(201,162,39,.15)}50%{box-shadow:0 0 0 8px rgba(201,162,39,.06)}}
+#vcount{font-family:Georgia,serif;color:#c9a227;font-weight:700;letter-spacing:.12em}
+</style>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -2752,7 +2757,7 @@
       </div>
       <div class="footer-bottom">
         <span>© <span id="year">2026</span> RHEEMA by Ranpa Exim. All rights reserved.</span>
-        <span class="domain">www.rheema.in</span>
+        <span class="domain">www.rheema.in</span><span class="visitors"><span class="v-dot"></span>Visitors: <span id="vcount">000</span></span>
       </div>
     </div>
   </footer>
@@ -3426,5 +3431,15 @@
       document.getElementById('year').textContent = String(new Date().getFullYear());
     }());
   </script>
+<script data-goatcounter="https://rheema.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+(function(){
+  var el=document.getElementById('vcount'); if(!el) return;
+  fetch('https://rheema.goatcounter.com/counter/TOTAL.json')
+    .then(function(r){return r.json();})
+    .then(function(d){var n=parseInt(d.count_unique||d.count,10)||0;el.textContent=String(n).padStart(3,'0');})
+    .catch(function(){});
+})();
+</script>
 </body>
 </html>
