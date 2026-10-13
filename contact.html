@@ -59,6 +59,10 @@ footer .fine{width:100%;text-align:center;margin-top:28px;padding-top:18px;borde
 .cbox::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),#e8cf6f);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
 .cbox:hover{transform:translateY(-8px);box-shadow:0 18px 44px rgba(201,162,39,.22);border-color:var(--gold)}
 .cbox:hover::before{transform:scaleX(1)}
+.cbox::after{content:"";position:absolute;top:0;left:-80%;width:55%;height:100%;background:linear-gradient(105deg,transparent,rgba(201,162,39,.16),transparent);transform:skewX(-20deg);animation:shine 4.5s ease-in-out infinite;pointer-events:none}
+.cbox:nth-child(2)::after{animation-delay:1.5s}
+.cbox:nth-child(3)::after{animation-delay:3s}
+@keyframes shine{0%{left:-80%}55%{left:135%}100%{left:135%}}
 .cicon{width:66px;height:66px;margin:0 auto 18px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(201,162,39,.35);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 .cicon svg{width:28px;height:28px;fill:#fff}
