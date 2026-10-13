@@ -68,6 +68,7 @@ footer .fine{width:100%;text-align:center;margin-top:28px;padding-top:18px;borde
 .cicon svg{width:28px;height:28px;fill:#fff}
 .clabel{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
 .cvalue{font-size:17px;font-weight:600;color:var(--ink);line-height:1.6;word-break:break-word}
+.form-card{max-width:640px;margin:44px auto 0}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.contact-boxes{grid-template-columns:1fr}.page-hero h1{font-size:30px}nav.main-nav{gap:14px}}
 </style>
 <script type="application/ld+json">
@@ -118,7 +119,15 @@ footer .fine{width:100%;text-align:center;margin-top:28px;padding-top:18px;borde
         <div class="cvalue">1-895, Ranpa Exim, Madhira,<br>Khammam, Telangana – 507203</div>
       </a>
     </div>
-    
+    <div class="card form-card">
+      <h3>Send a Message</h3>
+      <form action="mailto:info.rheema@gmail.com" method="post" enctype="text/plain">
+        <label for="n">Name</label><input id="n" name="name" required>
+        <label for="e">Email</label><input id="e" type="email" name="email" required>
+        <label for="m">Message</label><textarea id="m" name="message" required></textarea>
+        <button class="btn" type="submit">Send Message</button>
+      </form>
+    </div>
     <div class="map-card">
       <h3 class="map-title">Find Us on the Map</h3>
       <iframe title="Ranpa Exim Pvt Ltd location map" src="https://maps.google.com/maps?q=Ranpa%20Exim%20Pvt%20Ltd%2C%20Madhira%2C%20Khammam%2C%20Telangana%20507203&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
