@@ -3097,9 +3097,9 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
 <script>
 (function(){
   var el=document.getElementById('vcount'); if(!el) return;
-  fetch('https://rheema.goatcounter.com/counter/TOTAL.json')
-    .then(function(r){return r.json();})
-    .then(function(d){var n=parseInt(d.count_unique||d.count,10)||0;el.textContent=String(n).padStart(3,'0');})
+  var paths=['%2F','about.html','products.html','dispenser.html','tumbler.html','blog.html','contact.html','certificates.html','downloads.html','terms.html','privacy.html'];
+  Promise.all(paths.map(function(p){return fetch('https://rheema.goatcounter.com/counter/'+p+'.json').then(function(r){return r.json();}).catch(function(){return {count:0};});}))
+    .then(function(list){var n=0;list.forEach(function(d){n+=parseInt(d.count||0,10);});el.textContent=String(n).padStart(3,'0');})
     .catch(function(){});
 })();
 </script>
