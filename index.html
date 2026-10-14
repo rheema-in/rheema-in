@@ -2181,6 +2181,42 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
 .footer-visitors-big { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; font-size: 1.55rem; font-weight: 700; letter-spacing: .06em; color: #e8cf6f; }
 .footer-visitors-big .fv-dot { width: 12px; height: 12px; border-radius: 50%; background: #c9a227; animation: vpop 2.6s ease-in-out infinite; }
 .footer-visitors-big #vcount { color: #fff; font-size: 1.8rem; }
+
+    /* --- Product cards: continuous left-to-right motion --- */
+    .feature-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0;
+      overflow: visible;
+      width: max-content;
+      animation: productFlow 28s linear infinite;
+      border-top: none;
+    }
+    .feature-marquee { overflow: hidden; border-top: 1px solid var(--line); }
+    .feature-marquee:hover .feature-grid { animation-play-state: paused; }
+    .feature {
+      flex: 0 0 320px;
+      min-width: 320px;
+      padding: 26px 28px 28px;
+      border-bottom: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .feature:first-child { border-left: none; }
+    .feature:not(:nth-child(3n + 1)) { padding-left: 28px; }
+    @keyframes productFlow {
+      from { transform: translateX(-50%); }
+      to   { transform: translateX(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .feature-grid { animation: none; }
+    }
+
+    /* --- Product marquee: final overrides (must stay last) --- */
+    .feature-grid { display: flex !important; flex-wrap: nowrap !important; gap: 0 !important; width: max-content !important; animation: productFlow 28s linear infinite !important; border-top: none !important; }
+    .feature { flex: 0 0 min(320px, 80vw) !important; }
+    @media (prefers-reduced-motion: reduce) {
+      .feature-grid { animation: none !important; }
+    }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8HCXVLP6RN"></script>
@@ -2285,6 +2321,7 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
         </div>
       </div>
 
+      <div class="feature-marquee">
       <div class="feature-grid" id="features" aria-label="Tumbler features">
         <article class="feature"><span class="feature-number">01</span><h3>Vacuum insulated</h3><p>Double-wall vacuum insulation keeps cold drinks chilled and hot drinks warm for hours.</p></article>
         <article class="feature"><span class="feature-number">02</span><h3>900 ml capacity</h3><p>Generous size for a full day of hydration, without constant refills.</p></article>
@@ -2292,6 +2329,13 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
         <article class="feature"><span class="feature-number">04</span><h3>Reusable straw</h3><p>Comes with a reusable straw &mdash; no single-use plastic needed.</p></article>
         <article class="feature"><span class="feature-number">05</span><h3>Easy carry handle</h3><p>A sturdy built-in handle makes it effortless to carry anywhere &mdash; desk, car, gym or travel.</p></article>
         <article class="feature"><span class="feature-number">06</span><h3>Spill-resistant lid</h3><p>Secure lid with straw opening keeps your drink safe on the move.</p></article>
+        <article class="feature" aria-hidden="true"><span class="feature-number">01</span><h3>Vacuum insulated</h3><p>Double-wall vacuum insulation keeps cold drinks chilled and hot drinks warm for hours.</p></article>
+        <article class="feature" aria-hidden="true"><span class="feature-number">02</span><h3>900 ml capacity</h3><p>Generous size for a full day of hydration, without constant refills.</p></article>
+        <article class="feature" aria-hidden="true"><span class="feature-number">03</span><h3>BPA-free</h3><p>Safe, food-grade materials for everyday hydration you can trust.</p></article>
+        <article class="feature" aria-hidden="true"><span class="feature-number">04</span><h3>Reusable straw</h3><p>Comes with a reusable straw &mdash; no single-use plastic needed.</p></article>
+        <article class="feature" aria-hidden="true"><span class="feature-number">05</span><h3>Easy carry handle</h3><p>A sturdy built-in handle makes it effortless to carry anywhere &mdash; desk, car, gym or travel.</p></article>
+        <article class="feature" aria-hidden="true"><span class="feature-number">06</span><h3>Spill-resistant lid</h3><p>Secure lid with straw opening keeps your drink safe on the move.</p></article>
+      </div>
       </div>
 
       <div class="product-details">
