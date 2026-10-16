@@ -359,10 +359,62 @@
       .journey-map{grid-template-columns:68px 1fr 82px;gap:8px;min-height:170px;padding:20px 14px}.journey-start b{font-size:3.7rem}.journey-start small{font-size:.48rem}.journey-start span,.journey-end span{font-size:.78rem;line-height:1.05}.journey-end img{width:68px;height:68px}.journey-route{height:86px}.journey-mark{width:22px;height:22px;font-size:.58rem}.process-core{min-width:92px;padding:9px 10px}.process-core small{font-size:.43rem}.process-core strong{font-size:1.1rem}.process-console{padding:22px 14px 28px}.process-tabs{gap:6px;margin:18px 0 22px}.process-tab{padding:12px 4px 10px;font-size:.62rem}.process-tab span{font-size:.68rem}.process-detail{display:block;padding-top:20px}.process-detail h3{font-size:2.05rem}.process-detail>p:not(.detail-kicker){padding-top:0}.detail-meter{margin-top:16px}
     }
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
-  </style>
+  
+/* --- Standard site footer (same as all pages) --- */
+/* --- Premium footer --- */
+footer{background:linear-gradient(180deg,#262016,#171208);color:#cfc6ae;padding:56px 0 0;font-size:14px;position:relative}
+footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#c9a227,transparent)}
+.footer-inner{max-width:1080px;margin:0 auto;padding:0 24px}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:36px;padding-bottom:36px}
+.footer-brand strong{display:block;line-height:1.1}
+.footer-brand-main{font-family:Georgia,serif;font-size:28px;font-weight:700;color:#c9a227;letter-spacing:.14em}
+.footer-brand-by{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#b9ad8f;margin-left:6px}
+.footer-brand p{margin-top:12px;color:#a89e85;font-size:14px}
+.footer-wa{display:inline-block;margin-top:16px;background:#25d366;color:#fff;text-decoration:none;padding:11px 22px;border-radius:999px;font-weight:600;font-size:13px;transition:transform .25s ease,box-shadow .25s ease}
+.footer-wa:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(37,211,102,.35)}
+.footer-group h3{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#e8cf6f;margin-bottom:16px;position:relative;padding-bottom:10px}
+.footer-group h3::after{content:"";position:absolute;left:0;bottom:0;width:32px;height:2px;background:#c9a227}
+.footer-group ul{list-style:none}
+.footer-group li{margin-bottom:10px}
+.footer-group a{color:#cfc6ae;text-decoration:none;transition:color .2s,padding-left .2s}
+.footer-group a:hover{color:#fff;padding-left:4px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid #3a3226;padding:20px 0;font-size:12px;color:#8f8672}
+.footer-bottom .domain{color:#e6d9b8}
+@media(max-width:820px){.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.footer-top{grid-template-columns:1fr}}
+
+/* --- Standard site header (same as all pages) --- */
+.site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:50}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{text-decoration:none;display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-family:Georgia,serif;font-size:30px;font-weight:700;color:var(--gold);letter-spacing:.14em}
+.brand-sub{font-size:11px;letter-spacing:.28em;color:var(--muted);text-transform:uppercase}
+nav.main-nav{display:flex;gap:26px;flex-wrap:wrap}
+nav.main-nav a{text-decoration:none;color:var(--ink);font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+nav.main-nav a:hover,nav.main-nav a.active{color:var(--gold-dark)}
+.nav-drop{position:relative}
+.nav-drop>a{display:inline-block}
+.nav-drop .drop-menu{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #eee;border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.12);min-width:190px;padding:8px 0;z-index:100}
+.nav-drop:hover .drop-menu,.nav-drop:focus-within .drop-menu{display:block}
+.nav-drop .drop-menu a{display:block;padding:11px 18px;color:var(--ink);text-decoration:none;font-size:14px;letter-spacing:.02em;text-transform:none;font-weight:500;white-space:nowrap}
+.nav-drop .drop-menu a:hover{background:#faf7f0;color:var(--gold-dark)}
+</style>
 </head>
 <body>
-<header style="position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #eee"><div style="max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap"><a href="index.html" style="text-decoration:none;color:#1a1a1a;font-weight:800;font-size:22px;letter-spacing:2px">RHEEMA <span style="font-weight:400;font-size:12px;letter-spacing:1px;color:#8a6d1a">BY RANPA EXIM</span></a><nav style="display:flex;gap:22px;flex-wrap:wrap;font-size:15px"><a href="index.html" style="color:#333;text-decoration:none">Home</a><a href="products.html" style="color:#333;text-decoration:none">Products</a><a href="about.html" style="color:#8a6d1a;text-decoration:none;font-weight:700">About Us</a><a href="contact.html" style="color:#333;text-decoration:none">Contact</a></nav></div></header>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html"><span class="brand-name">RHEEMA</span><span class="brand-sub">by Ranpa Exim</span></a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About Us</a>
+      <span class="nav-drop"><a href="products.html">Products &#9662;</a><span class="drop-menu"><a href="dispenser.html">Food Dispenser</a><a href="tumbler.html">Tumbler</a></span></span>
+      <a href="certificates.html">Our Certificates</a>
+      <a href="downloads.html">Downloads</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
   <svg class="icon-sprite" aria-hidden="true">
     <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3l8.5 7.5"/><path d="M5.5 9v11h13V9M9.5 20v-6h5v6"/></symbol>
     <symbol id="i-story" viewBox="0 0 24 24"><path d="M4 5.5c3.4-.7 6-.1 8 1.8v12c-2-1.9-4.6-2.5-8-1.8zM20 5.5c-3.4-.7-6-.1-8 1.8v12c2-1.9 4.6-2.5 8-1.8z"/></symbol>
@@ -618,7 +670,47 @@
       </div>
     </section>
   </main>
-  <footer class="footer-line"><strong><span class="name-highlight">RHEEMA</span> by <span class="name-highlight">Ranpa Exim</span></strong><span>Thoughtful products for the rhythm of everyday life.</span></footer>
+  <footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <strong><span class="footer-brand-main">RHEEMA™</span></strong>
+        <p>Thoughtful products for the rhythm of everyday life.</p>
+      </div>
+      <div class="footer-group">
+        <h3>Products</h3>
+        <ul>
+          <li><a href="dispenser.html">6 Grid Rotating Food Dispenser</a></li>
+          <li><a href="tumbler.html">Premium Stainless Steel Tumbler</a></li>
+        </ul>
+      </div>
+      <div class="footer-group">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+      </div>
+      <div class="footer-group">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="tel:+917382926533">+91 73829 26533</a></li>
+          <li><a href="mailto:info.rheema@gmail.com">info.rheema@gmail.com</a></li>
+          <li>1-895, Ranpa Exim, Madhira,<br>Khammam, Telangana &ndash; 507203</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 RHEEMA. All rights reserved.</span>
+      <span class="domain">www.rheema.in</span>
+      
+    </div>
+  </div>
+</footer>
 
   <script>
     (function(){
