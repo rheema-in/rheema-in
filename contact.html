@@ -147,9 +147,9 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
   </div>
 </div>
 
-<section class="content">
+<section class="content" style="padding-top:16px;padding-bottom:16px">
   <div class="wrap">
-    <div class="contact-boxes">
+<div class="contact-boxes">
       <a class="cbox" href="tel:+917382926533">
         <div class="cicon"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></div>
         <div class="clabel">Call / WhatsApp</div>
@@ -166,23 +166,119 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
         <div class="cvalue">1-895, Ranpa Exim, Madhira,<br>Khammam, Telangana – 507203</div>
       </a>
     </div>
-    <div class="form-map-row">
-      <div class="card form-card">
-        <h3>Send a Message</h3>
+    <div class="compact-row">
+      <div class="card tab-card">
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab-btn active" data-tab="tab-msg">Send a Message</button>
+          <button type="button" class="tab-btn" data-tab="tab-tie">Tie up with RHEEMA</button>
+        </div>
+        <div class="tab-panel active" id="tab-msg">
+<h3>Send a Message</h3>
         <form action="mailto:info.rheema@gmail.com" method="post" enctype="text/plain">
           <label for="n">Name</label><input id="n" name="name" required>
           <label for="e">Email</label><input id="e" type="email" name="email" required>
           <label for="m">Message</label><textarea id="m" name="message" required></textarea>
           <button class="btn" type="submit">Send Message</button>
         </form>
+        </div>
+        <div class="tab-panel" id="tab-tie">
+<h3>Tie up with RHEEMA</h3>
+        <p style="margin:0 0 14px;color:#5a5348;font-size:.95rem">Want to sell RHEEMA products in your store, city or region? Fill this form and we will get back to you on WhatsApp.</p>
+        <p style="margin:0 0 18px;font-weight:700;color:#8a6d1a">Minimum Order Quantity (MOQ): 50 pcs</p>
+        <form id="tieupForm">
+          <label for="t-name">Your Name</label><input id="t-name" name="name" required>
+          <label for="t-business">Business / Shop Name</label><input id="t-business" name="business" required>
+          <label for="t-city">City</label><input id="t-city" name="city" required>
+          <label for="t-phone">Phone / WhatsApp Number</label><input id="t-phone" name="phone" type="tel" required>
+          <label for="t-email">Email</label><input id="t-email" name="email" type="email" required>
+          <label for="t-product">Product Interested In</label>
+          <select id="t-product" name="product" required>
+            <option value="6 Grid Rotating Food Dispenser">6 Grid Rotating Food Dispenser</option>
+            <option value="Premium Stainless Steel Tumbler (900 ml)">Premium Stainless Steel Tumbler (900 ml)</option>
+            <option value="Both products">Both products</option>
+          </select>
+          <label for="t-qty">Quantity (MOQ 50 pcs)</label>
+          <select id="t-qty" name="quantity" required>
+            <option value="50 pcs">50 pcs</option>
+            <option value="100 pcs">100 pcs</option>
+            <option value="250 pcs">250 pcs</option>
+            <option value="500 pcs">500 pcs</option>
+            <option value="1000+ pcs">1000+ pcs</option>
+          </select>
+          <label for="t-msg">Message</label><textarea id="t-msg" name="message" placeholder="Tell us about your business, your city and how you want to tie up with RHEEMA."></textarea>
+          <button class="btn" type="submit">Send Tie-up Request on WhatsApp</button>
+        </form>
+        </div>
       </div>
-      <div class="map-card">
-        <h3 class="map-title">Find Us on the Map</h3>
-        <iframe title="Ranpa Exim Pvt Ltd location map" src="https://maps.google.com/maps?q=Ranpa%20Exim%20Pvt%20Ltd%2C%20Madhira%2C%20Khammam%2C%20Telangana%20507203&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <div class="side-col">
+        <div class="map-card compact-map">
+          <h3 class="map-title">Find Us on the Map</h3>
+<iframe title="Ranpa Exim Pvt Ltd location map" src="https://maps.google.com/maps?q=Ranpa%20Exim%20Pvt%20Ltd%2C%20Madhira%2C%20Khammam%2C%20Telangana%20507203&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <div class="why-card">
+          <h3>Why Partner with RHEEMA?</h3>
+          <ul>
+            <li>Products made for everyday Indian homes</li>
+            <li>Clear pricing and honest product information</li>
+            <li>Pan-India delivery</li>
+            <li>Direct support from the RHEEMA team</li>
+          </ul>
+          <p><strong>MOQ: 50 pcs</strong></p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+.compact-row{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;margin-top:20px;align-items:start}
+.tab-card{margin:0;padding:18px}
+.tabs{display:flex;gap:8px;margin-bottom:14px;border-bottom:1px solid #eee;padding-bottom:10px}
+.tab-btn{border:1px solid #e3d9b8;background:#fbf8f0;border-radius:999px;padding:8px 16px;cursor:pointer;font-weight:700;font-size:14px;color:#5a5348}
+.tab-btn.active{background:#c9a227;color:#fff;border-color:#c9a227}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.tab-panel form label{display:block;font-size:13px;font-weight:600;margin:8px 0 3px}
+.tab-panel form input,.tab-panel form select,.tab-panel form textarea{width:100%;padding:9px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;box-sizing:border-box}
+.tab-panel form textarea{min-height:64px}
+.tab-panel form .btn{margin-top:12px}
+.side-col{display:flex;flex-direction:column;gap:16px}
+.compact-map{margin:0}
+.compact-map iframe{width:100%;height:240px;border:0}
+.why-card{background:#fbf8f0;border:1px solid #eee;border-radius:12px;padding:16px}
+.why-card h3{margin:0 0 8px;font-size:16px}
+.why-card ul{margin:0;padding-left:18px;color:#444;line-height:1.7;font-size:14px}
+.why-card p{margin:10px 0 0;font-size:14px;color:#8a6d1a}
+@media(max-width:760px){.compact-row{grid-template-columns:1fr}}
+</style>
+<script>
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+  });
+});
+</script>
+
+
+<script>
+document.getElementById('tieupForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var v = function(id){ return document.getElementById(id).value.trim(); };
+  var msg = 'Hi RHEEMA, I want to tie up with RHEEMA.\n\n' +
+    'Name: ' + v('t-name') + '\n' +
+    'Business: ' + v('t-business') + '\n' +
+    'City: ' + v('t-city') + '\n' +
+    'Phone: ' + v('t-phone') + '\n' +
+    'Email: ' + v('t-email') + '\n' +
+    'Product: ' + v('t-product') + '\n' +
+    'Quantity: ' + v('t-qty') + '\n' +
+    'Message: ' + v('t-msg');
+  window.open('https://wa.me/917382926533?text=' + encodeURIComponent(msg), '_blank');
+});
+</script>
 
 <footer>
   <div class="footer-inner">
