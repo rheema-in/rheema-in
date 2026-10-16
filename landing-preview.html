@@ -2251,6 +2251,7 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
         <li><a href="blog.html">Blog</a></li>
         <li><a href="https://www.rheema.in/contact.html">Contact Us</a></li>
       </ul>
+    <button type="button" class="cart-btn" id="openCart" aria-label="Open cart">Cart <span class="cart-count" id="cartCount">0</span></button>
     </nav>
   </header>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -2405,7 +2406,7 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
     <div class="lp-final">
       <h2>Ready for an Organised Kitchen?</h2>
       <p>₹1,499 including delivery. Order today.</p>
-      <div class="lp-cta" style="justify-content:center"><a class="lp-btn lp-btn-wa" href="https://wa.me/917382926533?text=Hi%20RHEEMA%2C%20I%27d%20like%20to%20order%20the%206%20Grid%20Rotating%20Food%20Dispenser%20(%E2%82%B91%2C499%20including%20delivery).">Order on WhatsApp</a><a class="lp-btn lp-btn-buy" href="dispenser.html">Buy Now — ₹1,499</a></div>
+      <div class="lp-cta" style="justify-content:center"><a class="lp-btn lp-btn-wa" href="https://wa.me/917382926533?text=Hi%20RHEEMA%2C%20I%27d%20like%20to%20order%20the%206%20Grid%20Rotating%20Food%20Dispenser%20(%E2%82%B91%2C499%20including%20delivery).">Order on WhatsApp</a><div class="qty-picker" aria-label="Quantity"><button type="button" id="qtyMinus" aria-label="Decrease quantity">&minus;</button><span id="qtyVal">1</span><button type="button" id="qtyPlus" aria-label="Increase quantity">+</button></div><button type="button" class="lp-btn lp-btn-buy" id="addToCart" style="border:0;cursor:pointer;font-family:inherit">Add to Cart — ₹1,499</button></div>
     </div>
   </section>
 <section class="lp-terms">
@@ -2493,6 +2494,131 @@ function lpRestart(){if(lpTimer){clearInterval(lpTimer);}lpTimer=setInterval(fun
   Promise.all(paths.map(function(p){return fetch('https://rheema.goatcounter.com/counter/'+p+'.json').then(function(r){return r.json();}).catch(function(){return {count:0};});}))
     .then(function(list){var n=0;list.forEach(function(d){n+=parseInt(d.count||0,10);});var s=String(n).padStart(3,'0');el.textContent=s;try{sessionStorage.setItem('rheema_vcount',s);}catch(e){}})
     .catch(function(){});
+})();
+</script>
+<style>
+.cart-btn{background:#c9a227;color:#fff;border:0;border-radius:999px;padding:8px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.cart-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;margin-left:4px;border-radius:999px;background:#fff;color:#8a6d1a;font-size:12px;font-weight:800}
+.buy-row{display:flex;align-items:center;gap:12px;margin:18px 0 12px;flex-wrap:wrap}
+.qty-picker{display:inline-flex;align-items:center;border:1px solid #e3d9b8;border-radius:999px;overflow:hidden}
+.qty-picker button{width:38px;height:42px;border:0;background:#fbf8f0;font-size:20px;cursor:pointer;color:#8a6d1a}
+.qty-picker span{min-width:44px;text-align:center;font-weight:700;font-size:16px}
+#addToCart{background:linear-gradient(135deg,#c9a227,#a88420);color:#fff;border:0;border-radius:999px;padding:13px 28px;font-weight:700;cursor:pointer;font-size:15px}
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9998;opacity:0;pointer-events:none;transition:opacity .25s}
+.cart-overlay.open{opacity:1;pointer-events:auto}
+.cart-drawer{position:fixed;top:0;right:0;width:min(400px,92vw);height:100%;background:#fff;z-index:9999;box-shadow:-12px 0 40px rgba(0,0,0,.18);transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column}
+.cart-drawer.open{transform:translateX(0)}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid #eee}
+.cart-head h3{margin:0;font-size:20px}
+.cart-close{border:0;background:none;font-size:26px;cursor:pointer;line-height:1}
+.cart-items{flex:1;overflow-y:auto;padding:18px 22px}
+.cart-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #f2ecd9;align-items:center}
+.cart-item img{width:64px;height:64px;object-fit:cover;border-radius:10px}
+.cart-item-info{flex:1}
+.cart-item-info b{display:block;font-size:15px}
+.cart-item-info small{color:#777}
+.cart-item-qty{display:inline-flex;align-items:center;gap:8px;margin-top:6px}
+.cart-item-qty button{width:26px;height:26px;border:1px solid #e3d9b8;background:#fbf8f0;border-radius:50%;cursor:pointer;font-weight:700}
+.cart-remove{border:0;background:none;color:#b00;cursor:pointer;font-size:13px}
+.cart-empty{text-align:center;color:#777;padding:40px 0}
+.cart-foot{padding:18px 22px;border-top:1px solid #eee}
+.cart-total{display:flex;justify-content:space-between;font-size:18px;font-weight:800;margin-bottom:4px}
+.cart-delivery{color:#2e7d32;font-size:13px;margin-bottom:14px}
+.checkout-btn{width:100%;background:linear-gradient(135deg,#c9a227,#a88420);color:#fff;border:0;border-radius:999px;padding:15px;font-weight:800;font-size:16px;cursor:pointer}
+.checkout-btn:disabled{opacity:.5;cursor:not-allowed}
+.cart-msg{margin-top:10px;font-size:13px;color:#2e7d32;text-align:center;min-height:18px}
+</style>
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cart-head">
+    <h3>Your Cart</h3>
+    <button type="button" class="cart-close" id="closeCart" aria-label="Close cart">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">₹0</span></div>
+    <div class="cart-delivery">Delivery charges included &mdash; no extra fee</div>
+    <button type="button" class="checkout-btn" id="checkoutBtn" disabled>Pay with Razorpay</button>
+    <div class="cart-msg" id="cartMsg"></div>
+  </div>
+</aside>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+(function(){
+  var PRICE = 1499, NAME = 'RHEEMA 6 Grid Rotating Food Dispenser';
+  var KEY = 'rzp_live_ToBRBVcUwCQBxb';
+  var cart = [];
+  try { cart = JSON.parse(localStorage.getItem('rheema_cart') || '[]'); } catch(e){ cart = []; }
+  var qty = 1;
+  function save(){ try{ localStorage.setItem('rheema_cart', JSON.stringify(cart)); }catch(e){} }
+  function fmt(n){ return '₹' + n.toLocaleString('en-IN'); }
+  function count(){ return cart.reduce(function(s,i){ return s + i.qty; }, 0); }
+  function total(){ return cart.reduce(function(s,i){ return s + i.qty * PRICE; }, 0); }
+  function render(){
+    document.getElementById('cartCount').textContent = count();
+    var box = document.getElementById('cartItems');
+    if(!cart.length){
+      box.innerHTML = '<div class="cart-empty">Your cart is empty.<br>Add the dispenser to get started.</div>';
+    } else {
+      box.innerHTML = cart.map(function(it,idx){
+        return '<div class="cart-item"><img src="og-image.jpg" alt=""><div class="cart-item-info"><b>'+NAME+'</b><small>'+fmt(PRICE)+' each &middot; incl. delivery</small><div class="cart-item-qty"><button type="button" data-dec="'+idx+'">&minus;</button><span>'+it.qty+'</span><button type="button" data-inc="'+idx+'">+</button></div></div><div><div style="font-weight:800">'+fmt(it.qty*PRICE)+'</div><button type="button" class="cart-remove" data-rem="'+idx+'">Remove</button></div></div>';
+      }).join('');
+    }
+    document.getElementById('cartTotal').textContent = fmt(total());
+    document.getElementById('checkoutBtn').disabled = !cart.length;
+  }
+  function openCart(){ document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+  function closeCart(){ document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+  document.getElementById('openCart').addEventListener('click', openCart);
+  document.getElementById('closeCart').addEventListener('click', closeCart);
+  document.getElementById('cartOverlay').addEventListener('click', closeCart);
+  document.getElementById('qtyMinus').addEventListener('click', function(){ qty = Math.max(1, qty-1); document.getElementById('qtyVal').textContent = qty; });
+  document.getElementById('qtyPlus').addEventListener('click', function(){ qty = Math.min(99, qty+1); document.getElementById('qtyVal').textContent = qty; });
+  document.getElementById('addToCart').addEventListener('click', function(){
+    var found = cart.find(function(i){ return i.name === NAME; });
+    if(found){ found.qty = Math.min(99, found.qty + qty); } else { cart.push({name: NAME, qty: qty}); }
+    save(); render(); openCart();
+    document.getElementById('cartMsg').textContent = 'Added ' + qty + ' × ' + NAME + ' to cart';
+  });
+  document.getElementById('cartItems').addEventListener('click', function(e){
+    var t = e.target;
+    var idx = t.getAttribute('data-inc') || t.getAttribute('data-dec') || t.getAttribute('data-rem');
+    if(idx === null) return;
+    idx = parseInt(idx, 10);
+    if(t.hasAttribute('data-inc')) cart[idx].qty = Math.min(99, cart[idx].qty + 1);
+    else if(t.hasAttribute('data-dec')) cart[idx].qty = Math.max(1, cart[idx].qty - 1);
+    else if(t.hasAttribute('data-rem')) cart.splice(idx, 1);
+    save(); render();
+  });
+  document.getElementById('checkoutBtn').addEventListener('click', function(){
+    var amt = total() * 100; // paise
+    var qtyTotal = count();
+    var options = {
+      key: KEY,
+      amount: amt,
+      currency: 'INR',
+      name: 'RHEEMA by Ranpa Exim',
+      description: qtyTotal + ' × ' + NAME,
+      image: 'https://www.rheema.in/favicon.svg',
+      handler: function(resp){
+        cart = []; save(); render(); closeCart();
+        var msg = 'Payment successful! Payment ID: ' + resp.razorpay_payment_id + '. Please send your delivery address on WhatsApp.';
+        document.getElementById('cartMsg').textContent = '';
+        alert(msg);
+        var wa = 'https://wa.me/917382926533?text=' + encodeURIComponent('Hi RHEEMA, I just paid for ' + qtyTotal + ' × 6 Grid Rotating Food Dispenser (Payment ID: ' + resp.razorpay_payment_id + '). My delivery address is: ');
+        window.open(wa, '_blank');
+      },
+      prefill: { name: '', contact: '', email: '' },
+      notes: { product: NAME, qty: String(qtyTotal) },
+      theme: { color: '#c9a227' }
+    };
+    try {
+      var rzp = new Razorpay(options);
+      rzp.on('payment.failed', function(r){ document.getElementById('cartMsg').textContent = 'Payment failed: ' + (r.error && r.error.description ? r.error.description : 'Please try again.'); });
+      rzp.open();
+    } catch(err){ document.getElementById('cartMsg').textContent = 'Could not open payment. Please try again.'; }
+  });
+  render();
 })();
 </script>
 </body>
