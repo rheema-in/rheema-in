@@ -2226,6 +2226,14 @@ footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; hei
   gtag('js', new Date());
   gtag('config', 'G-8HCXVLP6RN');
 </script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1118213924091025');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1118213924091025&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Product","name":"RHEEMA 6 Grid Rotating Food Dispenser","image":"https://www.rheema.in/dispenser-clean.jpg","description":"360° rotating dry-food storage with 6 compartments and one-touch dispensing for rice, dal, cereals and dry foods.","brand":{"@type":"Brand","name":"RHEEMA"},"offers":{"@type":"Offer","url":"https://www.rheema.in/","priceCurrency":"INR","price":"1499","availability":"https://schema.org/InStock"}}
@@ -2554,6 +2562,7 @@ function lpRestart(){if(lpTimer){clearInterval(lpTimer);}lpTimer=setInterval(fun
   function fmt(n){ return '₹' + n.toLocaleString('en-IN'); }
   function count(){ return cart.reduce(function(s,i){ return s + i.qty; }, 0); }
   function total(){ return cart.reduce(function(s,i){ return s + i.qty * PRICE; }, 0); }
+  function pixelTrack(ev, params){ try{ if(window.fbq){ fbq('track', ev, params || {}); } }catch(e){} }
   function render(){
     document.getElementById('cartCount').textContent = count();
     var box = document.getElementById('cartItems');
@@ -2578,6 +2587,7 @@ function lpRestart(){if(lpTimer){clearInterval(lpTimer);}lpTimer=setInterval(fun
     var found = cart.find(function(i){ return i.name === NAME; });
     if(found){ found.qty = Math.min(99, found.qty + qty); } else { cart.push({name: NAME, qty: qty}); }
     save(); render(); openCart();
+    pixelTrack('AddToCart', {content_name: NAME, content_type: 'product', value: PRICE * qty, currency: 'INR'});
     document.getElementById('cartMsg').textContent = 'Added ' + qty + ' × ' + NAME + ' to cart';
   });
   document.getElementById('cartItems').addEventListener('click', function(e){
@@ -2593,6 +2603,7 @@ function lpRestart(){if(lpTimer){clearInterval(lpTimer);}lpTimer=setInterval(fun
   document.getElementById('checkoutBtn').addEventListener('click', function(){
     var amt = total() * 100; // paise
     var qtyTotal = count();
+    pixelTrack('InitiateCheckout', {value: total(), currency: 'INR', num_items: qtyTotal});
     var options = {
       key: KEY,
       amount: amt,
@@ -2601,6 +2612,8 @@ function lpRestart(){if(lpTimer){clearInterval(lpTimer);}lpTimer=setInterval(fun
       description: qtyTotal + ' × ' + NAME,
       image: 'https://www.rheema.in/favicon.svg',
       handler: function(resp){
+        var purchaseValue = total(); var purchaseQty = count();
+        pixelTrack('Purchase', {value: purchaseValue, currency: 'INR', num_items: purchaseQty, content_name: NAME, content_type: 'product'});
         cart = []; save(); render(); closeCart();
         var msg = 'Payment successful! Payment ID: ' + resp.razorpay_payment_id + '. Please send your delivery address on WhatsApp.';
         document.getElementById('cartMsg').textContent = '';
