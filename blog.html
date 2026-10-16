@@ -88,7 +88,10 @@ details.featured-post .expand-icon{animation:iconPulse 2.4s ease-in-out infinite
 .wa-float{animation:waPulse 2.6s ease-in-out infinite}
 @keyframes waPulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 0 0 12px rgba(37,211,102,0)}}
 
-/* --- Premium .footer-inner{max-width:1080px;margin:0 auto;padding:0 24px}
+/* --- Premium footer --- */
+footer{background:linear-gradient(180deg,#262016,#171208);color:#cfc6ae;padding:56px 0 0;font-size:14px;position:relative}
+footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#c9a227,transparent)}
+.footer-inner{max-width:1080px;margin:0 auto;padding:0 24px}
 .footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:36px;padding-bottom:36px}
 .footer-brand strong{display:block;line-height:1.1}
 .footer-brand-main{font-family:Georgia,serif;font-size:28px;font-weight:700;color:#c9a227;letter-spacing:.14em}
