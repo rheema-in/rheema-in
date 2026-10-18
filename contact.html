@@ -141,7 +141,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
 <section class="content" style="padding-top:16px;padding-bottom:16px">
   <div class="wrap">
     <h1 style="font-size:36px;text-align:center;margin:4px 0 28px">Contact Us</h1>
-<div class="contact-boxes">
+<div class="contact-boxes reveal">
       <a class="cbox" href="tel:+917382926533">
         <div class="cicon"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></div>
         <div class="clabel">Call / WhatsApp</div>
@@ -159,7 +159,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
       </a>
     </div>
     <div class="compact-row">
-      <div class="card tab-card">
+      <div class="card tab-card reveal">
         <div class="tabs" role="tablist">
           <button type="button" class="tab-btn active" data-tab="tab-msg">Send a Message</button>
           <button type="button" class="tab-btn" data-tab="tab-tie">Tie up with RHEEMA</button>
@@ -203,11 +203,11 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
         </div>
       </div>
       <div class="side-col">
-        <div class="map-card compact-map">
+        <div class="map-card compact-map reveal">
           <h3 class="map-title">Find Us on the Map</h3>
 <iframe title="Ranpa Exim Pvt Ltd location map" src="https://maps.google.com/maps?q=Ranpa%20Exim%20Pvt%20Ltd%2C%20Madhira%2C%20Khammam%2C%20Telangana%20507203&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
-        <div class="why-card">
+        <div class="why-card reveal">
           <h3>Why Partner with RHEEMA?</h3>
           <ul>
             <li>Products made for everyday Indian homes</li>
@@ -242,6 +242,20 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
 .why-card ul{margin:0;padding-left:18px;color:#444;line-height:1.7;font-size:14px}
 .why-card p{margin:10px 0 0;font-size:14px;color:#8a6d1a}
 @media(max-width:760px){.compact-row{grid-template-columns:1fr}}
+
+/* --- RHEEMA graphics: gold divider, title glow, dot pattern --- */
+body{background-image:radial-gradient(circle,rgba(201,162,39,.06) 1px,transparent 1.5px);background-size:32px 32px}
+h1{text-shadow:0 2px 20px rgba(201,162,39,.30)}
+.gold-divider{height:3px;border:0;background:linear-gradient(90deg,transparent,#c9a227,transparent);margin:48px 0 24px}
+
+/* --- RHEEMA motion: scroll reveal --- */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
+
+/* --- Contact card hover lift --- */
+.card,.map-card,.why-card{transition:transform .25s,box-shadow .25s}
+.card:hover,.map-card:hover,.why-card:hover{transform:translateY(-5px);box-shadow:0 16px 30px rgba(201,162,39,.22)}
 </style>
 <script>
 document.querySelectorAll('.tab-btn').forEach(function(btn){
@@ -272,6 +286,7 @@ document.getElementById('tieupForm').addEventListener('submit', function(e){
 });
 </script>
 
+<hr class="gold-divider">
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -323,6 +338,15 @@ document.getElementById('tieupForm').addEventListener('submit', function(e){
     .then(function(r){return r.json();})
     .then(function(d){var n=parseInt(d.count_unique||d.count,10)||0;el.textContent=String(n).padStart(3,'0');})
     .catch(function(){});
+})();
+</script>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 })();
 </script>
 </body>

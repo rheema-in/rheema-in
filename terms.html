@@ -76,6 +76,16 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
 .footer-bottom .domain{color:#e6d9b8}
 @media(max-width:820px){.footer-top{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.footer-top{grid-template-columns:1fr}}
+
+/* --- RHEEMA graphics: gold divider, title glow, dot pattern --- */
+body{background-image:radial-gradient(circle,rgba(201,162,39,.06) 1px,transparent 1.5px);background-size:32px 32px}
+h1{text-shadow:0 2px 20px rgba(201,162,39,.30)}
+.gold-divider{height:3px;border:0;background:linear-gradient(90deg,transparent,#c9a227,transparent);margin:48px 0 24px}
+
+/* --- RHEEMA motion: scroll reveal --- */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8HCXVLP6RN"></script>
@@ -110,7 +120,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
   </div>
 </div>
 
-<section class="content">
+<section class="content reveal">
   <div class="wrap terms">
     <h2>1. General</h2>
     <p>These terms govern the purchase of RHEEMA products from <strong>Ranpa Exim</strong> ("we", "us") through www.rheema.in or our WhatsApp ordering channel. By placing an order, you agree to these terms.</p>
@@ -166,6 +176,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
   </div>
 </section>
 
+<hr class="gold-divider">
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -217,6 +228,15 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
     .then(function(r){return r.json();})
     .then(function(d){var n=parseInt(d.count_unique||d.count,10)||0;el.textContent=String(n).padStart(3,'0');})
     .catch(function(){});
+})();
+</script>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 })();
 </script>
 </body>

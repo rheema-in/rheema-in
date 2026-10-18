@@ -96,6 +96,16 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
 .cert-card h3{font-size:16px;text-align:center;margin:0;padding:14px 10px 16px;border-top:1px solid #f0e6c3}
 @media(max-width:820px){.cert-gallery{grid-template-columns:1fr 1fr}.cert-card img{height:220px}}
 @media(max-width:520px){.cert-gallery{grid-template-columns:1fr}}
+
+/* --- RHEEMA graphics: gold divider, title glow, dot pattern --- */
+body{background-image:radial-gradient(circle,rgba(201,162,39,.06) 1px,transparent 1.5px);background-size:32px 32px}
+h1{text-shadow:0 2px 20px rgba(201,162,39,.30)}
+.gold-divider{height:3px;border:0;background:linear-gradient(90deg,transparent,#c9a227,transparent);margin:48px 0 24px}
+
+/* --- RHEEMA motion: scroll reveal --- */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
 </style>
 </head>
 <body>
@@ -119,17 +129,18 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
     <h1 style="font-size:36px;text-align:center;margin:4px 0 0">Our Certificates</h1>
     <div class="gold-rule" style="margin-bottom:28px"></div>
     <div class="cert-gallery">
-      <div class="cert-card"><a href="cert-iec.webp" target="_blank" rel="noopener"><img src="cert-iec.webp" alt="IEC Certificate — Ranpa Exim" loading="lazy"></a><h3>IEC Certificate</h3></div>
-      <div class="cert-card"><a href="cert-gst.webp" target="_blank" rel="noopener"><img src="cert-gst.webp" alt="GST Certificate — Ranpa Exim" loading="lazy"></a><h3>GST Certificate</h3></div>
-      <div class="cert-card"><a href="cert-incorporation.webp" target="_blank" rel="noopener"><img src="cert-incorporation.webp" alt="Incorporation Certificate — Ranpa Exim" loading="lazy"></a><h3>Incorporation Certificate</h3></div>
-      <div class="cert-card"><a href="cert-msme.webp" target="_blank" rel="noopener"><img src="cert-msme.webp" alt="MSME Certificate — Ranpa Exim" loading="lazy"></a><h3>MSME Certificate</h3></div>
-      <div class="cert-card"><a href="cert-cpcb.webp" target="_blank" rel="noopener"><img src="cert-cpcb.webp" alt="CPCB Registration Certificate for Importer — Ranpa Exim" loading="lazy"></a><h3>CPCB Certificate</h3></div>
-      <div class="cert-card"><a href="cert-legal-metrology.webp" target="_blank" rel="noopener"><img src="cert-legal-metrology.webp" alt="Legal Metrology Registration Certificate — Ranpa Exim" loading="lazy"></a><h3>Legal Metrology Certificate</h3></div>
+      <div class="cert-card reveal"><a href="cert-iec.webp" target="_blank" rel="noopener"><img src="cert-iec.webp" alt="IEC Certificate — Ranpa Exim" loading="lazy"></a><h3>IEC Certificate</h3></div>
+      <div class="cert-card reveal"><a href="cert-gst.webp" target="_blank" rel="noopener"><img src="cert-gst.webp" alt="GST Certificate — Ranpa Exim" loading="lazy"></a><h3>GST Certificate</h3></div>
+      <div class="cert-card reveal"><a href="cert-incorporation.webp" target="_blank" rel="noopener"><img src="cert-incorporation.webp" alt="Incorporation Certificate — Ranpa Exim" loading="lazy"></a><h3>Incorporation Certificate</h3></div>
+      <div class="cert-card reveal"><a href="cert-msme.webp" target="_blank" rel="noopener"><img src="cert-msme.webp" alt="MSME Certificate — Ranpa Exim" loading="lazy"></a><h3>MSME Certificate</h3></div>
+      <div class="cert-card reveal"><a href="cert-cpcb.webp" target="_blank" rel="noopener"><img src="cert-cpcb.webp" alt="CPCB Registration Certificate for Importer — Ranpa Exim" loading="lazy"></a><h3>CPCB Certificate</h3></div>
+      <div class="cert-card reveal"><a href="cert-legal-metrology.webp" target="_blank" rel="noopener"><img src="cert-legal-metrology.webp" alt="Legal Metrology Registration Certificate — Ranpa Exim" loading="lazy"></a><h3>Legal Metrology Certificate</h3></div>
       </div>
     <div class="note"><strong>A note for our partners:</strong> Tap any certificate to view it larger. For bulk and distribution enquiries, Write to <a href="mailto:info.rheema@gmail.com" style="color:var(--gold-dark)">info.rheema@gmail.com</a> or message us on <a href="https://wa.me/917382926533" style="color:var(--gold-dark)">WhatsApp</a>.</div>
   </div>
 </section>
 
+<hr class="gold-divider">
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -181,6 +192,15 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
     .then(function(r){return r.json();})
     .then(function(d){var n=parseInt(d.count_unique||d.count,10)||0;el.textContent=String(n).padStart(3,'0');})
     .catch(function(){});
+})();
+</script>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 })();
 </script>
 </body>

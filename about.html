@@ -398,6 +398,11 @@ nav.main-nav a:hover,nav.main-nav a.active{color:var(--gold-dark)}
 .nav-drop:hover .drop-menu,.nav-drop:focus-within .drop-menu{display:block}
 .nav-drop .drop-menu a{display:block;padding:11px 18px;color:var(--ink);text-decoration:none;font-size:14px;letter-spacing:.02em;text-transform:none;font-weight:500;white-space:nowrap}
 .nav-drop .drop-menu a:hover{background:#faf7f0;color:var(--gold-dark)}
+
+/* --- RHEEMA graphics: gold divider, title glow, dot pattern --- */
+body{background-image:radial-gradient(circle,rgba(201,162,39,.06) 1px,transparent 1.5px);background-size:32px 32px}
+h1{text-shadow:0 2px 20px rgba(201,162,39,.30)}
+.gold-divider{height:3px;border:0;background:linear-gradient(90deg,transparent,#c9a227,transparent);margin:48px 0 24px}
 </style>
 </head>
 <body>
@@ -781,6 +786,7 @@ nav.main-nav a:hover,nav.main-nav a.active{color:var(--gold-dark)}
     })();
   </script>
 
+<hr class="gold-divider">
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
