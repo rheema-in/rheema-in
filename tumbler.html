@@ -164,6 +164,14 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;back
 .cart-delivery{color:#2e7d32;font-size:13px;margin-bottom:14px}
 .checkout-btn{width:100%;background:linear-gradient(135deg,#c9a227,#a88420);color:#fff;border:0;border-radius:999px;padding:15px;font-weight:800;font-size:16px;cursor:pointer}
 .checkout-btn:disabled{opacity:.5;cursor:not-allowed}
+.addr-form{margin-bottom:12px;text-align:left}
+.addr-form label{display:block;font-size:12px;font-weight:700;color:#555;margin:10px 0 4px}
+.addr-form input,.addr-form textarea{width:100%;box-sizing:border-box;border:1px solid #e3d9b8;border-radius:10px;padding:10px 12px;font:inherit;font-size:14px;background:#fff}
+.addr-form textarea{resize:vertical;min-height:56px}
+.addr-form .addr-row{display:flex;gap:10px}
+.addr-form .addr-row>div{flex:1}
+.addr-err{color:#b00;font-size:13px;margin-top:8px;min-height:16px}
+
 .cart-msg{margin-top:10px;font-size:13px;color:#2e7d32;text-align:center;min-height:18px}
 
 /* --- RHEEMA graphics: gold divider, title glow, dot pattern --- */
@@ -368,7 +376,20 @@ fbq('track', 'PageView');
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-foot">
     <div class="cart-total"><span>Total</span><span id="cartTotal">₹0</span></div>
-    <div class="cart-delivery">Delivery address collected on WhatsApp after payment.</div>
+    <div class="cart-delivery">Enter your delivery address above &mdash; no WhatsApp needed.</div>
+    <form class="addr-form" id="addrForm" novalidate>
+      <label for="addrName">Full name</label>
+      <input type="text" id="addrName" autocomplete="name" placeholder="Your full name" required>
+      <label for="addrPhone">Mobile number</label>
+      <input type="tel" id="addrPhone" autocomplete="tel" inputmode="numeric" placeholder="10-digit mobile number" required>
+      <label for="addrLine">Delivery address</label>
+      <textarea id="addrLine" autocomplete="street-address" placeholder="House no., street, area" required></textarea>
+      <div class="addr-row">
+        <div><label for="addrCity">City</label><input type="text" id="addrCity" autocomplete="address-level2" placeholder="City" required></div>
+        <div><label for="addrPin">Pincode</label><input type="text" id="addrPin" autocomplete="postal-code" inputmode="numeric" placeholder="6-digit pincode" required></div>
+      </div>
+      <div class="addr-err" id="addrErr"></div>
+    </form>
     <button type="button" class="checkout-btn" id="checkoutBtn" disabled>Pay with Razorpay</button>
     <div class="cart-msg" id="cartMsg"></div>
   </div>
@@ -385,6 +406,23 @@ fbq('track', 'PageView');
   function fmt(n){ return '₹' + n.toLocaleString('en-IN'); }
   function count(){ return cart.reduce(function(s,i){ return s + i.qty; }, 0); }
   function total(){ return cart.reduce(function(s,i){ return s + i.qty * PRICE; }, 0); }
+
+  function loadAddr(){ try{ var s = JSON.parse(localStorage.getItem('rheema_address') || 'null'); if(!s) return; var g = function(id){ return document.getElementById(id); }; if(g('addrName')) g('addrName').value = s.name || ''; if(g('addrPhone')) g('addrPhone').value = s.phone || ''; if(g('addrLine')) g('addrLine').value = s.line || ''; if(g('addrCity')) g('addrCity').value = s.city || ''; if(g('addrPin')) g('addrPin').value = s.pin || ''; }catch(e){} }
+  function readAddr(){
+    var g = function(id){ return document.getElementById(id).value.trim(); };
+    var err = document.getElementById('addrErr');
+    var a = { name: g('addrName'), phone: g('addrPhone').replace(/[^0-9]/g, ''), line: g('addrLine'), city: g('addrCity'), pin: g('addrPin').replace(/[^0-9]/g, '') };
+    var msg = '';
+    if(a.name.length < 2) msg = 'Please enter your full name.';
+    else if(!/^[6-9][0-9]{9}$/.test(a.phone)) msg = 'Please enter a valid 10-digit mobile number.';
+    else if(a.line.length < 8) msg = 'Please enter your full delivery address.';
+    else if(a.city.length < 2) msg = 'Please enter your city.';
+    else if(!/^[0-9]{6}$/.test(a.pin)) msg = 'Please enter a valid 6-digit pincode.';
+    if(msg){ err.textContent = msg; return null; }
+    err.textContent = '';
+    try{ localStorage.setItem('rheema_address', JSON.stringify(a)); }catch(e){}
+    return a;
+  }
   function render(){
     document.getElementById('cartCount').textContent = count();
     var box = document.getElementById('cartItems');
@@ -424,6 +462,8 @@ fbq('track', 'PageView');
   document.getElementById('checkoutBtn').addEventListener('click', function(){
     var amt = total() * 100; // paise
     var qtyTotal = count();
+    var a = readAddr();
+    if(!a){ return; }
     var options = {
       key: KEY,
       amount: amt,
@@ -432,15 +472,13 @@ fbq('track', 'PageView');
       description: qtyTotal + ' × ' + NAME,
       image: 'https://www.rheema.in/favicon.svg',
       handler: function(resp){
-        cart = []; save(); render(); closeCart();
-        var msg = 'Payment successful! Payment ID: ' + resp.razorpay_payment_id + '. Please send your delivery address on WhatsApp.';
+        cart = []; save(); render();
+        var box = document.getElementById('cartItems');
+        box.innerHTML = '<div class="cart-empty" style="color:#2e7d32"><b>Order placed! Thank you.</b><br>Payment ID: ' + resp.razorpay_payment_id + '<br><br>Delivering to:<br>' + a.name + '<br>' + a.line + '<br>' + a.city + ' &mdash; ' + a.pin + '<br><br>We will dispatch your order soon.</div>';
         document.getElementById('cartMsg').textContent = '';
-        alert(msg);
-        var wa = 'https://wa.me/917382926533?text=' + encodeURIComponent('Hi RHEEMA, I just paid for ' + qtyTotal + ' × Premium Stainless Steel Tumbler (Payment ID: ' + resp.razorpay_payment_id + '). My delivery address is: ');
-        window.open(wa, '_blank');
       },
-      prefill: { name: '', contact: '', email: '' },
-      notes: { product: NAME, qty: String(qtyTotal) },
+      prefill: { name: a.name, contact: a.phone, email: '' },
+      notes: { product: NAME, qty: String(qtyTotal), name: a.name, phone: a.phone, address: (a.line + ', ' + a.city + ' - ' + a.pin).slice(0, 250) },
       theme: { color: '#c9a227' }
     };
     try {
@@ -449,6 +487,7 @@ fbq('track', 'PageView');
       rzp.open();
     } catch(err){ document.getElementById('cartMsg').textContent = 'Could not open payment. Please try again.'; }
   });
+  loadAddr();
   render();
 })();
 </script>
